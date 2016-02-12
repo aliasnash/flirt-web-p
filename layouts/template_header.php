@@ -12,8 +12,8 @@
 			</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="navbar-collapse collapse off" id="navbar">
-			<ul class="nav navbar-nav navbar-right no-collapse">
+		<div class="navbar-collapse collapse" id="navbar">
+			<ul class="nav navbar-nav navbar-right">
 				<li class="active">
 					<a href="#">Dashboard</a>
 				</li>
