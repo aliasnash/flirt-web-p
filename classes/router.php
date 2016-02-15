@@ -9,8 +9,11 @@ class Router {
 	public function __construct() {}
 
 	public function setPath($path) {
-		$path = trim($path, '/\\') . DS;
-		if (!is_dir($path)) throw new Exception('Invalid controller path:' . $path);
+		$path .= DS;
+		// $path = trim($path, '/\\') . DS;
+		
+		if (!is_dir($path))
+			throw new Exception('Invalid controller path:' . $path);
 		$this->path = $path;
 	}
 
@@ -39,24 +42,28 @@ class Router {
 			}
 		}
 		
-		if (empty($controller)) $controller = 'index';
+		if (empty($controller))
+			$controller = 'index';
 		
 		$action = array_shift($parts);
-		if (empty($action)) $action = 'index';
+		if (empty($action))
+			$action = 'index';
 		$file = $cmd_path . $controller . '.php';
 		$args = $parts;
 	}
 
 	public function start() {
 		$this->getController($file, $controller, $action, $agrs);
-		if (!is_readable($file)) die('404 not found');
+		if (!is_readable($file))
+			die('404 not found');
 		
 		include ($file);
 		
 		$class = 'Controller_' . $controller;
 		$controller = new $class();
 		
-		if (!is_callable(array($controller, $action))) die('404 not found');
+		if (!is_callable(array($controller, $action)))
+			die('404 not found');
 		$controller->$action();
 	}
 }

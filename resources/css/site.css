@@ -1,3 +1,8 @@
+body {
+	height: 100%;
+	overflow-y: scroll;
+}
+
 .online {
 	color: green;
 	position: relative;
@@ -46,4 +51,63 @@
 
 .thumbnail {
 	margin-bottom: 7px;
+}
+
+.my-navbar {
+	background-image: linear-gradient(to bottom, #fff 0px, #f8f8f8 100%);
+	background-repeat: repeat-x;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px
+		rgba(0, 0, 0, 0.075);
+	background-color: #f8f8f8;
+	color: #777;
+	border-radius: 4px;
+	border-color: #e7e7e7;
+	border-width: 0 0 1px;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1030;
+	min-height: 50px;
+	margin-bottom: 20px;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.my-navbar-header {
+	float: left;
+}
+
+.my-navbar-brand {
+	float: left;
+	font-size: 18px;
+	height: 50px;
+	line-height: 20px;
+	padding: 15px;
+	color: #777;
+	text-decoration: none;
+}
+
+.my-navbar-right {
+	float: right !important;
+	margin-right: 15px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	line-height: 20px;
+	display: block;
+	position: relative;
+	color: #777;
+}
+
+.my-navbar-right a {
+	color: #777;
+	text-decoration: none;
+}
+
+.my-navbar-header a {
+	color: #777;
+	text-decoration: none;
+}
+
+.heading{
+	padding-top: 15px;
 }

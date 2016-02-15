@@ -30,14 +30,21 @@
 
 </head>
 
-<body style="padding-top: 80px;">
-	<?php include 'template_header.php';?>
+<body>
+	
+	<?php
+	if ($logged)
+		include 'template_header_on.php';
+	else
+		include 'template_header_off.php';
+	
+	?>
+
 	<div class="container">
-		<div class="content">
+		<div class="">
 			<?php include ($contentPage); ?>
 		</div>
 	</div>
-
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-1.11.3.min.js"></script>
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-ui.min.js"></script>-->
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap.min.js"></script>
@@ -48,6 +55,7 @@
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput_locale_ru.js"></script>-->
 
 	<script src="<?=WEB_APP?>/resources/js/site.js"></script>
+
 </body>
 </html>
 
