@@ -32,13 +32,13 @@
 
 <body>
 	
-	<?php
-	if ($logged)
-		include 'template_header_on.php';
-	else
-		include 'template_header_off.php';
-	
-	?>
+    <?php
+    if ($logged)
+        include 'template_header_on.php';
+    else
+        include 'template_header_off.php';
+    
+    ?>
 
 	<div class="container">
 		<div class="">

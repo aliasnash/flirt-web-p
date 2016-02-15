@@ -18,7 +18,7 @@
 			&nbsp;&nbsp;
 			<a href="<?=WEB_APP?>/logout">
 				<span class="glyphicon glyphicon-log-out"></span>
-				&nbsp;Выход
+				<span class="hidden-xs">&nbsp;Выход</span>
 			</a>
 		</div>
 	</div>
