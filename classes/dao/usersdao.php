@@ -23,6 +23,16 @@ class UsersDao extends Dao {
         return $data;
     }
 
+    public function getUsersById($id) {
+        if (!empty($id)) {
+            $stmt = static::$db->prepare("SELECT id, name, msisdn, age, sex, search_sex, city FROM users WHERE isactive=true AND id = :id");
+            $stmt->execute(array('id' => $id));
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+        return array();
+    }
+
     public function getUsersByMsisdn($msisdn) {
         if (!empty($msisdn)) {
             $stmt = static::$db->prepare("SELECT id, name, msisdn, age FROM users WHERE isactive=true AND msisdn = :msisdn");

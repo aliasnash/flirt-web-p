@@ -11,7 +11,7 @@
 				<span class="hidden-xs">&nbsp;Сообщения</span>
 			</a>
 			&nbsp;&nbsp;
-			<a href="#">
+			<a href="<?=WEB_APP?>/profile">
 				<span class="glyphicon glyphicon-user"></span>
 				<span class="hidden-xs">&nbsp;Профиль</span>
 			</a>
