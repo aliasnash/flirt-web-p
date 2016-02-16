@@ -7,17 +7,17 @@
 		</div>
 		<div class="my-navbar-right">
 			<a href="<?=WEB_APP?>/messages">
-				<span class="glyphicon glyphicon-envelope"></span>
+				<span class="fa fa-comments-o fa-lg "></span>
 				<span class="hidden-xs">&nbsp;Сообщения</span>
 			</a>
 			&nbsp;&nbsp;
 			<a href="<?=WEB_APP?>/profile">
-				<span class="glyphicon glyphicon-user"></span>
+				<span class="fa fa-user fa-lg"></span>
 				<span class="hidden-xs">&nbsp;Профиль</span>
 			</a>
 			&nbsp;&nbsp;
 			<a href="<?=WEB_APP?>/logout">
-				<span class="glyphicon glyphicon-log-out"></span>
+				<span class="fa fa-sign-out fa-lg"></span>
 				<span class="hidden-xs">&nbsp;Выход</span>
 			</a>
 		</div>

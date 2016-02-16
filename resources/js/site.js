@@ -8,7 +8,7 @@ $(window).on('load', function() {
 
 	$('[data-toggle="tooltip"]').tooltip();
 
-//	$('select').selectpicker();
+	$('select').selectpicker();
 
 //	$('#date').datepicker({
 //		format : "yyyy-mm-dd",

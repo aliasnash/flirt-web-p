@@ -7,7 +7,7 @@
 		</div>
 		<div class="my-navbar-right">
 			<a href="<?=WEB_APP?>/enter">
-				<span class="glyphicon glyphicon-log-in"></span>
+				<span class="fa fa-sign-in fa-lg"></span>
 				&nbsp;Вход
 			</a>
 		</div>
