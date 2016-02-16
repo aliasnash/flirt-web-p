@@ -31,7 +31,6 @@
 </head>
 
 <body>
-	
     <?php
     if ($logged)
         include 'template_header_on.php';

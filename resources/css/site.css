@@ -108,6 +108,14 @@ body {
 	text-decoration: none;
 }
 
-.heading{
+.heading {
 	padding-top: 15px;
+}
+
+.no-left-spaces {
+	padding-left: 1px;
+}
+
+.no-right-spaces {
+	padding-right: 1px;
 }

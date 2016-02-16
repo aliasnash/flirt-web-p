@@ -6,7 +6,7 @@
 			<div class="col-md-2 col-xs-12">
 				<div class="form-group">
 					<label for="msisdn" class="control-label"></label>
-					<input type="text" pattern="\d*" maxlength="11" class="input-md form-control" id="msisdn" name="msisdn" placeholder=" 79991234567" />
+					<input type="text" pattern="\d*" maxlength="11" class="input-md form-control" id="msisdn" name="msisdn" placeholder="79991234567" />
 				</div>
 			</div>
 			<div class="form-group col-md-5 hidden-xs"></div>

@@ -6,7 +6,14 @@ class Model_Profile {
 
     public function getProfile($id) {
         $userDao = new UsersDao();
-        $data = $userDao->getUsersById($id);
+        $userDao->updateVisitUsersById($id);
+        $data = $userDao->getProfileById($id);
+        return $data;
+    }
+    
+    public function getCityList() {
+        $userDao = new UsersDao();
+        $data = $userDao->getCityList();
         return $data;
     }
 }

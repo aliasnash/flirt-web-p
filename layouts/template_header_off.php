@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="my-navbar-header">
 			<a href="<?=WEB_APP?>" class="my-navbar-brand">
-				<strong>Mobi-Flirt</strong>
+				<strong>BRAND</strong>
 			</a>
 		</div>
 		<div class="my-navbar-right">

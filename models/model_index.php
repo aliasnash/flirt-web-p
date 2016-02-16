@@ -6,6 +6,7 @@ class Model_Index {
 
     public function getUsersList($id) {
         $userDao = new UsersDao();
+        $userDao->updateVisitUsersById($id);
         $data = $userDao->getUsersList($id);
         return $data;
     }
