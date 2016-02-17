@@ -1,5 +1,5 @@
 <div class="well">
-	<p class="lead text-center">Ваша анкета</p>
+	<p class="lead text-center">Анкета</p>
 
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-xs-12">
@@ -26,20 +26,11 @@
 			<strong>Город:</strong>
 		</div>
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
-			<?=$profile['cityCaption'];?>
+			<?=$profile['caption'];?>
 		</div>
 		<div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
 			<br>
 			<p class="text-muted"><?=$profile['description'];?></p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="form-group col-md-12 col-xs-12 text-center">
-			<div class="btn-group">
-				<a href="<?=WEB_APP?>/profile/edit" class="btn btn-info btn-lg">
-					<i class="fa fa-pencil-square-o fa-lg"></i> Изменить
-				</a>
-			</div>
 		</div>
 	</div>
 </div>

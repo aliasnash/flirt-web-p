@@ -11,6 +11,16 @@ class Model_Profile {
         return $data;
     }
     
+    public function removeProfile($msisdn) {
+        $userDao = new UsersDao();
+        $userDao->removeUserByMsisdn($msisdn);
+    }
+    
+    public function updateProfile($profile) {
+        $userDao = new UsersDao();
+        $userDao->updateProfile($profile);
+    }
+    
     public function getCityList() {
         $userDao = new UsersDao();
         $data = $userDao->getCityList();

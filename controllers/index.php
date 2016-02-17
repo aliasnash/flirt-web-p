@@ -17,4 +17,10 @@ class Controller_Index extends Controller_Base {
             $this->template->view('index', false);
         }
     }
+
+    function test() {
+        $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        $this->template->view('test', $idu > 0);
+    }
 }
