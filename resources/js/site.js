@@ -37,4 +37,10 @@ $(window).on('load', function() {
 		$(e.currentTarget).find('input#promo-caption').val(elementName);
 		$(e.currentTarget).find('textarea#promo-info').val(elementText);
 	});
+	
+    $('#profile-gallery-button').on('click', function (event) {
+        event.preventDefault();
+//        $('#blueimp-gallery').data('fullScreen', true);
+        blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
+    });
 });

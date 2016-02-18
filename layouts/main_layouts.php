@@ -17,8 +17,8 @@
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <!-- <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/fileinput.min.css" rel="stylesheet">-->
 <link href="<?=WEB_APP?>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="<?=WEB_APP?>/resources/thirdpart/jquery/css/blueimp-gallery.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-image-gallery.min.css" rel="stylesheet">
-<link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/blueimp-gallery.min.css" rel="stylesheet">
 
 <link href="<?=WEB_APP?>/resources/css/sidebar.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/css/site.css" rel="stylesheet">
@@ -61,7 +61,7 @@
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-select.min.js"></script>
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput.min.js"></script>-->
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput_locale_ru.js"></script>-->
-	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/blueimp-gallery.min.js"></script>
+	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery.blueimp-gallery.min.js"></script>
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-image-gallery.min.js"></script>
 
 	<script src="<?=WEB_APP?>/resources/js/site.js"></script>

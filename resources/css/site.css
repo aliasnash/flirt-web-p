@@ -123,3 +123,8 @@ body {
 .too-small {
 	font-size: 70%;
 }
+
+.modal {
+	overflow: auto;
+	color: #333;
+}
