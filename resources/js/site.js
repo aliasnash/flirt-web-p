@@ -44,5 +44,3 @@ $(window).on('load', function() {
 		blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
 	});
 });
-
-

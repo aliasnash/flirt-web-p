@@ -10,5 +10,7 @@ define('DB_PASS', 'postgres');
 
 define('WEB_APP', dirname($_SERVER['PHP_SELF']));
 define('BRAND', 'TEST');
+define('MIN_TIMEOUT_ONLINE', 10);
+define('SEARCH_YEAR_DIFF', 5);
 define('REC_ON_PAGE', 6);
 

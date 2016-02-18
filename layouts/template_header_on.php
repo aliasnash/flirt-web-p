@@ -5,14 +5,15 @@
 	</a>
 </div>
 <div class="my-navbar-right">
+	<a href="<?=WEB_APP?>/messages">
+		<span class="badge badge-notify" id="badge-unreaded-messages"></span>
+		<span class="fa fa-comments-o fa-2x"></span>
+		<span class="hidden-xs">Сообщения</span>
+	</a>
+	&nbsp;&nbsp;&nbsp;
 	<a href="<?=WEB_APP?>/search">
 		<span class="fa fa-search fa-2x "></span>
 		<span class="hidden-xs">&nbsp;Поиск</span>
-	</a>
-	&nbsp;&nbsp;&nbsp;
-	<a href="<?=WEB_APP?>/messages">
-		<span class="fa fa-comments-o fa-2x "></span>
-		<span class="hidden-xs">&nbsp;Сообщения</span>
 	</a>
 	&nbsp;&nbsp;&nbsp;
 	<a href="<?=WEB_APP?>/profile">

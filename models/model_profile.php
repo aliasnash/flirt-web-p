@@ -2,35 +2,33 @@
 
 class Model_Profile {
 
-    private $userDao;
+	private $userDao;
 
-    public function __construct() {
-        $this->userDao = new UsersDao();
-    }
+	public function __construct() {
+		$this->userDao = new UsersDao();
+	}
 
-    public function getProfile($id) {
-        $this->userDao->updateVisitUsersById($id);
-        $data = $this->userDao->getProfileById($id);
-        return $data;
-    }
+	public function getProfile($id) {
+		$data = $this->userDao->getProfileById($id);
+		return $data;
+	}
 
-    public function getPhotoList($id) {
-        $data = $this->userDao->getPhotoList($id);
-        return $data;
-    }
-    
-    public function removeProfile($msisdn) {
-        $this->userDao->removeUserByMsisdn($msisdn);
-    }
+	public function getPhotoList($id) {
+		$data = $this->userDao->getPhotoList($id);
+		return $data;
+	}
 
-    public function updateProfile($profile) {
-        $this->userDao->updateProfile($profile);
-    }
+	public function removeProfile($msisdn) {
+		$this->userDao->removeUserByMsisdn($msisdn);
+	}
 
-    public function getCityList() {
-        $data = $this->userDao->getCityList();
-        return $data;
-    }
-    
-    
+	public function updateProfile($profile) {
+		$this->userDao->updateProfile($profile);
+	}
+
+	public function getCityList() {
+		$data = $this->userDao->getCityList();
+		return $data;
+	}
+
 }

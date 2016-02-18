@@ -16,7 +16,7 @@ class Controller_Enter extends Controller_Base {
 			
 			if (!empty($user)) {
 				$_SESSION['idu'] = $user['id'];
-				$model->updateVisit($user['id']);
+				$model->visit($user['id']);
 				header('Location:' . WEB_APP);
 			} else {
 				header('Location:' . WEB_APP . '/enter');

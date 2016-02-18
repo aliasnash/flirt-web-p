@@ -29,18 +29,19 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
+<script>
+	var contexPath = "<?=WEB_APP;?>";
+</script>
 </head>
 
 <body>
 	<div class="my-navbar">
 		<div class="container">
-            <?php
-            if ($logged)
-                include 'template_header_on.php';
-            else
-                include 'template_header_off.php';
-            ?>
+            <?php if ($logged)
+				include 'template_header_on.php';
+			else 
+				include 'template_header_off.php';
+			?>
     	</div>
 	</div>
 
@@ -70,6 +71,9 @@
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-image-gallery.min.js"></script>
 
 	<script src="<?=WEB_APP?>/resources/js/site.js"></script>
+	<?php if ($logged) { ?>
+		<script src="<?=WEB_APP?>/resources/js/subscribed.js"></script>
+    <?php } ?>
 
 </body>
 </html>

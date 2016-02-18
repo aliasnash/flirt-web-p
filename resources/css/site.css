@@ -128,3 +128,10 @@ body {
 	overflow: auto;
 	color: #333;
 }
+
+.badge-notify {
+	background-color: #d43f3a;
+	position: relative;
+	top: -15px;
+	left: 40px;
+}
