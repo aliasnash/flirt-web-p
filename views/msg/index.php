@@ -1,5 +1,4 @@
 <div class="panel panel-default">
-	<div class="lead text-center heading">TEST</div>
 	<div class="panel-body">
 		<ul class="media-list">
 		<?php foreach($messages as $key => $value) {?>
@@ -36,6 +35,7 @@
 
 	<div class="panel-footer">
 		<form class="form" role="form" method="post">
+			<input type="hidden" id="s" name="s" value="<?=$iduser;?>" />
 			<div class="input-group">
 				<input type="text" class="form-control" id="msg" name="msg" placeholder="Сообщение..." />
 				<span class="input-group-btn">

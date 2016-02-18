@@ -33,23 +33,28 @@
 </head>
 
 <body>
-    <?php
-    if ($logged)
-        include 'template_header_on.php';
-    else
-        include 'template_header_off.php';
-    
-    ?>
+	<div class="my-navbar">
+		<div class="container">
+            <?php
+            if ($logged)
+                include 'template_header_on.php';
+            else
+                include 'template_header_off.php';
+            ?>
+    	</div>
+	</div>
 
 	<div class="container">
-		<div class="">
+		<div class="col-md-12 col-xs-12 no-right-spaces no-left-spaces">
 			<?php include ($contentPage); ?>
 		</div>
 	</div>
 
 	<footer class="footer">
 		<div class="container">
-			<?php include 'template_footer.php'?>
+			<div class="col-md-12 col-xs-12">
+				<?php include 'template_footer.php'?>
+			</div>
 		</div>
 	</footer>
 

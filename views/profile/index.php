@@ -3,7 +3,8 @@
 
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-xs-12">
-			<a href="#" class="thumbnail"> <img class="img-responsive" src="<?=WEB_APP?>/images/<?='00.jpg';?>" alt="">
+			<a href="#" class="thumbnail">
+				<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$profile['photopath'];?>" alt="">
 			</a>
 		</div>
 
@@ -25,58 +26,31 @@
 			<strong>Город:</strong>
 		</div>
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
-			<?=$profile['cityCaption'];?>
+			<?=$profile['caption'];?>
 		</div>
 		<div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
 			<br>
 			<p class="text-muted"><?=$profile['description'];?></p>
 		</div>
 	</div>
+
 	<div class="row">
 		<div id="links">
+			<?php foreach ($photos as $key => $value) {?>
 			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/01.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/01.jpg" alt="Banana" title="...">
+				<a href="<?=WEB_APP?>/images/<?=$value['photopath']?>" class="thumbnail" data-gallery>
+					<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$value['photopath']?>">
 				</a>
 			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/02.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/02.jpg" alt="Apple" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/03.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/03.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/04.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/04.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/05.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/05.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/06.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/06.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/07.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/07.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/01.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/01.jpg" alt="Orange" title="...">
-				</a>
-			</div>
-			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/09.jpg" class="thumbnail" data-gallery> <img class="img-responsive" src="<?=WEB_APP?>/images/09.jpg" alt="Orange" title="...">
-				</a>
-			</div>			
+			<?php }?>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="form-group col-md-12 col-xs-12 text-center">
 			<div class="btn-group">
-				<a href="<?=WEB_APP?>/profile/edit" class="btn btn-info btn-lg"> <i class="fa fa-pencil-square-o fa-lg"></i> Изменить
+				<a href="<?=WEB_APP?>/profile/edit" class="btn btn-info btn-lg">
+					<i class="fa fa-pencil-square-o fa-lg"></i> Изменить
 				</a>
 			</div>
 		</div>
@@ -84,13 +58,15 @@
 </div>
 
 <div id="blueimp-gallery" class="blueimp-gallery " data-use-bootstrap-modal="false">
-
 	<!-- The container for the modal slides -->
 	<div class="slides"></div>
 
 	<!-- Controls for the borderless lightbox -->
 	<h3 class="title"></h3>
-	<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a class="play-pause"></a>
+	<a class="prev">‹</a>
+	<a class="next">›</a>
+	<a class="close">×</a>
+	<a class="play-pause"></a>
 	<ol class="indicator"></ol>
 
 	<!-- The modal dialog, which will be used to wrap the lightbox content -->

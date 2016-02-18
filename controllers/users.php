@@ -13,13 +13,16 @@ class Controller_Users extends Controller_Base {
         
         if (!empty($iduser)) {
             $model = new Model_User();
-            $profiles = $model->getProfileWithCityById($idu, $iduser);
+            $profiles = $model->getUserProfile($idu, $iduser);
             
             if (count($profiles) > 0) {
                 $profile = $profiles[0];
             }
             
             if (!empty($profile)) {
+                $photos = $model->getPhotoList($iduser);
+                
+                $this->template->vars('photos', $photos);
                 $this->template->vars('profile', $profile);
                 $this->template->view('index', $idu > 0);
             } else {

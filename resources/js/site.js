@@ -10,12 +10,12 @@ $(window).on('load', function() {
 
 	$('select').selectpicker();
 
-//	$('#date').datepicker({
-//		format : "yyyy-mm-dd",
-//		language : "ru",
-//		weekStart : 1,
-//		autoclose : true
-//	});
+	// $('#date').datepicker({
+	// format : "yyyy-mm-dd",
+	// language : "ru",
+	// weekStart : 1,
+	// autoclose : true
+	// });
 
 	$('#modal-edit-promo').on('show.bs.modal', function(e) {
 		var elementId = $(e.relatedTarget).data('element-id');
@@ -37,10 +37,12 @@ $(window).on('load', function() {
 		$(e.currentTarget).find('input#promo-caption').val(elementName);
 		$(e.currentTarget).find('textarea#promo-info').val(elementText);
 	});
-	
-    $('#profile-gallery-button').on('click', function (event) {
-        event.preventDefault();
-//        $('#blueimp-gallery').data('fullScreen', true);
-        blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
-    });
+
+	$('#profile-gallery-button').on('click', function(event) {
+		event.preventDefault();
+		$('#blueimp-gallery').data('fullScreen', true);
+		blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
+	});
 });
+
+

@@ -2,18 +2,20 @@
 
 class Model_Index {
 
-    public function __construct() {}
+    private $userDao;
+
+    public function __construct() {
+        $this->userDao = new UsersDao();
+    }
 
     public function getUsersList($id) {
-        $userDao = new UsersDao();
-        $userDao->updateVisitUsersById($id);
-        $data = $userDao->getUsersList($id);
+        $this->userDao->updateVisitUsersById($id);
+        $data = $this->userDao->getUsersList($id);
         return $data;
     }
 
     public function getRandomUsers() {
-        $userDao = new UsersDao();
-        $data = $userDao->getRandomUsers();
+        $data = $this->userDao->getRandomUsers();
         return $data;
     }
 

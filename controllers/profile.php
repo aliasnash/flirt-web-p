@@ -13,15 +13,9 @@ class Controller_Profile extends Controller_Base {
         }
         
         if (!empty($profile)) {
-            $cities = $model->getCityList();
-            $profile['cityCaption'] = '';
-            foreach($cities as $key => $value) {
-                if ($value['id'] == $profile['idcity']) {
-                    $profile['cityCaption'] = $value['caption'];
-                    break;
-                }
-            }
+            $photos = $model->getPhotoList($idu);
             
+            $this->template->vars('photos', $photos);
             $this->template->vars('profile', $profile);
             $this->template->view('index', $idu > 0);
         } else {

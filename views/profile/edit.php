@@ -2,7 +2,6 @@
 	<p class="lead text-center">Ваша анкета</p>
 	<form class="form" role="form" method="post" action="<?=WEB_APP?>/profile/update">
 		<div class="row">
-
 			<div class="form-group col-md-4 col-md-offset-4 col-xs-12">
 				<label for="nick" class="control-label">Имя:</label>
 				<input type="text" maxlength="11" class="input-md form-control" id="nick" name="nick" placeholder="Имя..." value="<?=$profile['nickname'];?>" />

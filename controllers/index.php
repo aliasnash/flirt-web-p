@@ -19,8 +19,26 @@ class Controller_Index extends Controller_Base {
     }
 
     function test() {
+        $model = new Model_Message();
+        
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
         
+        $msg = isset($_POST['msg']) ? $_POST['msg'] : '';
+        if (!empty($msg)) {
+            unset($_POST['msg']);
+            
+            $model->createMessage(1, 13, $msg);
+        }
+        
+        $messages = $model->getMessages(1, 13);
+        
+        $this->template->vars('messages', $messages);
         $this->template->view('test', $idu > 0);
+    }
+
+    function test2() {
+        $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        $this->template->view('test2', $idu > 0);
     }
 }

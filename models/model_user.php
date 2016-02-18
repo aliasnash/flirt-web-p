@@ -2,19 +2,26 @@
 
 class Model_User {
 
-    public function __construct() {}
+    private $userDao;
 
-    public function getProfileWithCityById($id, $iduser) {
-        $userDao = new UsersDao();
+    public function __construct() {
+        $this->userDao = new UsersDao();
+    }
+
+    public function getUserProfile($id, $iduser) {
         if (!empty($id))
-            $userDao->updateVisitUsersById($id);
-        $data = $userDao->getProfileWithCityById($iduser);
+            $this->userDao->updateVisitUsersById($id);
+        $data = $this->userDao->getProfileById($iduser);
+        return $data;
+    }
+
+    public function getPhotoList($id) {
+        $data = $this->userDao->getPhotoList($id);
         return $data;
     }
 
     public function getCityList() {
-        $userDao = new UsersDao();
-        $data = $userDao->getCityList();
+        $data = $this->userDao->getCityList();
         return $data;
     }
 }

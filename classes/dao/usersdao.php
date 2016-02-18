@@ -11,9 +11,9 @@ class UsersDao extends Dao {
             
             $stmt = static::$db->prepare("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '20 minute' AS online 
                     FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id 
-				    WHERE isactive=true AND u.id != :id AND p.photopath IS NOT NULL AND sex = :sex_search AND idcity = :idcity AND 
+				    WHERE isactive=true AND u.id != :id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL AND sex = :sex_search AND idcity = :idcity AND 
                     birthday BETWEEN date(:bd) - interval '5 year' AND date(:bd) + interval '5 year' 
-				    ORDER BY online desc, likecount DESC, random() limit 6");
+				    ORDER BY online desc, likecount DESC, random() limit " . REC_ON_PAGE);
             
             $stmt->execute(array('id' => $user['id'], 'sex_search' => $user['sex_search'], 'idcity' => $user['idcity'], 'bd' => $user['birthday']));
             // $stmt->debugDumpParams();
@@ -25,8 +25,54 @@ class UsersDao extends Dao {
     public function getRandomUsers() {
         $data = static::$db->query("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '20 minute' AS online 
                 FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id 
-                WHERE isactive=true AND p.photopath IS NOT NULL ORDER BY random() LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
+                WHERE isactive=true AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL ORDER BY random() LIMIT " . REC_ON_PAGE)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
+    }
+
+    public function getUsersCountByFilter($id, $sex, $bage, $aage, $idcity) {
+        if (!empty($id)) {
+            $where = "";
+            
+            if (!empty($sex) && $sex > 0)
+                $where .= " AND sex = $sex ";
+            if (!empty($bage) && $bage > 0)
+                $where .= " AND date_part('year', age(current_date, birthday)) >= $bage ";
+            if (!empty($aage) && $aage > 0)
+                $where .= " AND date_part('year', age(current_date, birthday)) <= $aage ";
+            if (!empty($idcity) && $idcity > 0)
+                $where .= " AND idcity = $idcity ";
+            
+            $stmt = static::$db->query("SELECT count(u.id)
+                       FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id
+ 				       WHERE isactive=true AND u.id != $id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL $where");
+            $count = $stmt->fetchColumn();
+            return $count;
+        }
+        return 0;
+    }
+
+    public function getUsersListByFilter($id, $sex, $bage, $aage, $idcity, $page) {
+        if (!empty($id)) {
+            $where = "";
+            
+            if (!empty($sex) && $sex > 0)
+                $where .= " AND sex = $sex ";
+            if (!empty($bage) && $bage > 0)
+                $where .= " AND date_part('year', age(current_date, birthday)) >= $bage ";
+            if (!empty($aage) && $aage > 0)
+                $where .= " AND date_part('year', age(current_date, birthday)) <= $aage ";
+            if (!empty($idcity) && $idcity > 0)
+                $where .= " AND idcity = $idcity ";
+            
+            $offset = ($page - 1) * 6;
+            $stmt = static::$db->query("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '20 minute' AS online
+                                    FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id
+                                    WHERE isactive=true AND u.id != $id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL $where
+                                    ORDER BY online desc, likecount DESC, u.id LIMIT " . REC_ON_PAGE . " OFFSET $offset");
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+        return array();
     }
 
     public function getCityList() {
@@ -48,27 +94,26 @@ class UsersDao extends Dao {
         return array();
     }
 
-    public function getProfileById($id) {
+    public function getPhotoList($id) {
         if (!empty($id)) {
-            $stmt = static::$db->prepare("SELECT id, nickname, msisdn, sex, sex_search, birthday, 
-                    date_part('day', birthday) as bday, 
-                    date_part('month', birthday) as bmonth, 
-                    date_part('year', birthday) as byear, idcity, description, isactive 
-                    FROM users WHERE id = :id");
-            $stmt->execute(array('id' => $id));
+            $stmt = static::$db->prepare("SELECT id, iduser, photopath FROM photos WHERE iduser = :iduser ORDER BY id");
+            $stmt->execute(array('iduser' => $id));
+            // $stmt->debugDumpParams();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         }
         return array();
     }
-    
-    public function getProfileWithCityById($id) {
+
+    public function getProfileById($id) {
         if (!empty($id)) {
-            $stmt = static::$db->prepare("SELECT u.id, nickname, msisdn, sex, sex_search, birthday,
-                    date_part('day', birthday) as bday,
-                    date_part('month', birthday) as bmonth,
-                    date_part('year', birthday) as byear, idcity, description, isactive, c.caption
-                    FROM users u LEFT JOIN cities c ON u.idcity = c.id 
+            $stmt = static::$db->prepare("SELECT u.id, nickname, msisdn, sex, sex_search, birthday, 
+                    date_part('day', birthday) as bday, 
+                    date_part('month', birthday) as bmonth, 
+                    date_part('year', birthday) as byear, idcity, description, isactive, c.caption, p.photopath
+                    FROM users u 
+                    LEFT JOIN cities c ON u.idcity = c.id
+                    LEFT JOIN photos p ON u.idmainphoto = p.id 
                     WHERE u.id = :id");
             $stmt->execute(array('id' => $id));
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -91,18 +136,41 @@ class UsersDao extends Dao {
         $stmt = static::$db->prepare("INSERT INTO users_removed
                 (id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto)
                 (SELECT id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto 
-                FROM users WHERE msisdn='$msisdn')");
-        $stmt->execute();
-        
-        $stmt = static::$db->prepare("DELETE FROM users WHERE msisdn = '$msisdn'");
-        $stmt->execute();
+                FROM users WHERE msisdn=:msisdn)");
+        $stmt->execute(array('msisdn' => $msisdn));
+        $stmt = static::$db->prepare("DELETE FROM users WHERE msisdn = :msisdn");
+        $stmt->execute(array('msisdn' => $msisdn));
     }
 
     public function updateProfile($profile) {
         $params = array('id' => $profile['id'], 'nickname' => $profile['nickname'], 'sex' => $profile['sex'], 'birthday' => $profile['birthday'], 'idcity' => $profile['idcity'], 'description' => $profile['description']);
-        
         $stmt = static::$db->prepare("UPDATE users SET nickname = :nickname, sex = :sex, birthday = date(:birthday), idcity = :idcity, description = :description WHERE id = :id");
         // $stmt->debugDumpParams();
+        $stmt->execute($params);
+    }
+
+    public function getMessages($id, $iduser) {
+        if (!empty($id) && !empty($iduser)) {
+            
+            $stmt = static::$db->prepare("SELECT m.id, to_char(m.dateadded, 'YYYY-mm-DD HH24:MI:SS') AS dateadded, m.message, us.id as idus, ud.id as idud, ps.photopath as pspath, pd.photopath as pdpath, CASE WHEN us.id = :id THEN true ELSE false END AS msgowner  
+                    FROM messages m
+                    LEFT JOIN users us ON m.idusersrc = us.id
+                    LEFT JOIN photos ps ON us.idmainphoto = ps.id
+                    LEFT JOIN users ud ON m.iduserdst = ud.id
+                    LEFT JOIN photos pd ON ud.idmainphoto = pd.id
+                    WHERE us.id IN (:id, :iduser) AND ud.id IN (:id, :iduser) ORDER BY m.dateadded");
+            
+            $stmt->execute(array('id' => $id, 'iduser' => $iduser));
+            
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+        return array();
+    }
+
+    public function createMessage($id, $iduser, $msg) {
+        $params = array('id' => $id, 'iduser' => $iduser, 'msg' => $msg);
+        $stmt = static::$db->prepare("INSERT INTO messages(idusersrc, iduserdst, message) VALUES(:id, :iduser, :msg)");
         $stmt->execute($params);
     }
 
