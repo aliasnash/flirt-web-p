@@ -1,49 +1,59 @@
 <div class="panel panel-default">
 	<div class="panel-body">
-		<ul class="media-list">
-		<?php foreach($messages as $key => $value) {?>
-			<?php if($value['msgowner']) {?>
-			<li class="media">
-				<div class="media-body bg-info">
-					<div class="media">
-						<p class="pull-right" style="margin-bottom: 0px;">
-							<img class="media-object img-circle " style="width: 60px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
-						</p>
-						<div class="media-body text-right">
-							<?=$value['message'];?> <br /> <small class="text-muted"><?=$value['dateadded'];?></small>
+		<div id="box" class="chat-window">
+			<ul class="media-list">
+			<?php foreach($messages as $key => $value) {?>
+    			<li class="media" data-element-id="<?=$value['id'];?>">
+    			<?php if($value['msgowner']) {?>
+    				<div class="media-body bg-info">
+						<div class="media">
+							<div class="pull-left hide">
+								<button type="button" class="close">
+									<i class="fa fa-times fa-lg" style="color: red;"></i>
+								</button>
+							</div>
+							<p class="pull-right" style="margin-bottom: 0px;">
+								<img class="media-object img-circle " style="width: 60px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
+							</p>
+							<div class="media-body text-right">
+    							<?=$value['message'];?> <br /> <small class="text-muted"><?=$value['dateadded'];?></small>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>				
-			<?php }else{?>
-			<li class="media">
-				<div class="media-body bg-warning">
-					<div class="media">
-						<a class="pull-left" href="<?=WEB_APP?>/users/profile?id=<?=$value['idus'];?>">
-							<img class="media-object img-circle " style="width: 60px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
-						</a>
-						<div class="media-body text-left">
-							<?=$value['message'];?> <br /> <small class="text-muted"><?=$value['dateadded'];?></small>
+    			<?php }else{?>
+    				<div class="media-body bg-warning">
+						<div class="media">
+							<div class="pull-right hide">
+								<button type="button" class="close">
+									<i class="fa fa-times fa-lg" style="color: red;"></i>
+								</button>
+							</div>
+							<a class="pull-left" href="<?=WEB_APP?>/users/profile?id=<?=$value['idus'];?>">
+								<img class="media-object img-circle " style="width: 60px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
+							</a>
+							<div class="media-body text-left">
+    							<?=$value['message'];?> <br /> <small class="text-muted"><?=$value['dateadded'];?></small>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
+    			<?php }?>
+    			</li>
 			<?php }?>
-		<?php }?>
-		</ul>
+			</ul>
+		</div>
 	</div>
 
 	<div class="panel-footer">
-		<form class="form" role="form" method="post">
+		<div id="form-send-msg">
 			<input type="hidden" id="s" name="s" value="<?=$iduser;?>" />
 			<div class="input-group">
-				<input type="text" class="form-control" id="msg" name="msg" placeholder="Сообщение..." />
+				<input type="text" class="form-control" id="msg" name="msg" placeholder="Сообщение..." autofocus="autofocus" />
 				<span class="input-group-btn">
-					<button class="btn btn-info" type="submit">
+					<button class="btn btn-info" type="button" id="send-message">
 						<i class="fa fa fa-paper-plane-o fa-lg"></i>
 					</button>
 				</span>
 			</div>
-		</form>
+		</div>
 	</div>
 </div>

@@ -135,3 +135,12 @@ body {
 	top: -15px;
 	left: 40px;
 }
+
+.media {
+	margin-top: 5px;
+}
+
+.chat-window {
+	height: 300px;
+	overflow: auto;
+}

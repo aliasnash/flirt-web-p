@@ -12,17 +12,17 @@ class Controller_Msg extends Controller_Base {
                 unset($_POST['s']);
                 $model = new Model_Message();
                 
-                $msg = isset($_POST['msg']) ? $_POST['msg'] : '';
-                if (!empty($msg)) {
-                    unset($_POST['msg']);
-                    $model->createMessage($idu, $iduser, $msg);
-                }
+                // $msg = isset($_POST['msg']) ? $_POST['msg'] : '';
+                // if (!empty($msg)) {
+                // unset($_POST['msg']);
+                // $model->createMessage($idu, $iduser, $msg);
+                // }
                 
                 $messages = $model->getMessages($idu, $iduser);
                 
                 $this->template->vars('iduser', $iduser);
                 $this->template->vars('messages', $messages);
-                $this->template->view('index', true);
+                $this->template->view('index', true, true);
             } else {
                 header('Location:' . WEB_APP);
             }

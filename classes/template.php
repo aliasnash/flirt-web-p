@@ -23,7 +23,7 @@ class Template {
         return true;
     }
 
-    function view($name, $logged = false) {
+    function view($name, $logged = false, $inChat = false) {
         $pathLayout = SITE_PATH . DS . 'layouts' . DS . $this->layouts . '.php';
         $contentPage = SITE_PATH . DS . 'views' . DS . $this->controller . DS . $name . '.php';
         

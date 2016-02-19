@@ -1,9 +1,13 @@
 $(window).on('load', function() {
+
 	var responseCnt = true;
 	var responseVisit = true;
 
 	msgCount();
+	visit();
+
 	setInterval(msgCount, 1000 * 12);
+	setInterval(visit, 1000 * 91);
 
 	function msgCount() {
 		if (responseCnt == true) {
@@ -19,11 +23,8 @@ $(window).on('load', function() {
 				// console.log("Завершение выполнения ");
 				responseCnt = true;
 			});
-		};
-	};
-
-	visit();
-	setInterval(visit, 1000 * 91);
+		}
+	}
 
 	function visit() {
 		if (responseVisit == true) {
@@ -37,6 +38,7 @@ $(window).on('load', function() {
 				// console.log("Завершение выполнения ");
 				responseVisit = true;
 			});
-		};
-	};
+		}
+	}
+
 });

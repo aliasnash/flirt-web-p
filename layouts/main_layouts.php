@@ -37,11 +37,12 @@
 <body>
 	<div class="my-navbar">
 		<div class="container">
-            <?php if ($logged)
-				include 'template_header_on.php';
-			else 
-				include 'template_header_off.php';
-			?>
+            <?php
+            if ($logged)
+                include 'template_header_on.php';
+            else
+                include 'template_header_off.php';
+            ?>
     	</div>
 	</div>
 
@@ -73,6 +74,10 @@
 	<script src="<?=WEB_APP?>/resources/js/site.js"></script>
 	<?php if ($logged) { ?>
 		<script src="<?=WEB_APP?>/resources/js/subscribed.js"></script>
+    <?php } ?>
+    
+	<?php if ($inChat) { ?>
+		<script src="<?=WEB_APP?>/resources/js/messaging.js"></script>
     <?php } ?>
 
 </body>
