@@ -37,7 +37,8 @@
 <body>
 	<div class="my-navbar">
 		<div class="container">
-            <?php if ($logged)
+            <?php
+            if ($logged)
                 include 'template_header_on.php';
             else
                 include 'template_header_off.php';
@@ -50,6 +51,14 @@
 			<?php include ($contentPage); ?>
 		</div>
 	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="col-md-12 col-xs-12">
+				<?php include 'template_footer.php'?>
+			</div>
+		</div>
+	</footer>
 
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-1.11.3.min.js"></script>
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-ui.min.js"></script>-->

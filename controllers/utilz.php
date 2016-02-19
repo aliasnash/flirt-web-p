@@ -30,8 +30,8 @@ class Controller_Utilz extends Controller_Base {
 
     function newmsg() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
-        $iduser = isset($_POST['iduser']) ? $_POST['iduser'] : 0;
-        $idmessage = isset($_POST['idmessage']) ? $_POST['idmessage'] : 0;
+        $iduser = intval(isset($_POST['iduser']) ? $_POST['iduser'] : 0);
+        $idmessage = intval(isset($_POST['idmessage']) ? $_POST['idmessage'] : 0);
         
         if ($idu > 0 && $iduser > 0) {
             $model = new Model_Message();

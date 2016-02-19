@@ -5,7 +5,7 @@
 	</a>
 </div>
 <div class="my-navbar-right">
-	<a href="<?=WEB_APP?>/messages">
+	<a href="<?=WEB_APP?>/msg/all">
 		<span class="badge badge-notify" id="badge-unreaded-messages"></span>
 		<span class="fa fa-comments-o fa-2x"></span>
 		<span class="hidden-xs">Сообщения</span>

@@ -46,8 +46,10 @@ $(window).on('load', function() {
 	}
 
 	function newMessage() {
-		var lastLi = $('li:last');
-		var idmessage = lastLi.data('element-id');
+		var elementToAdd = $('ul:last');
+		var idmessage = $('li:last').data('element-id');
+		if (!idmessage || idmessage == 'undefined') idmessage = 0;
+
 		var iduser = $('#form-send-msg #s').val();
 		if (iduser > 0) {
 			if (response == true) {
@@ -63,7 +65,7 @@ $(window).on('load', function() {
 					} else {
 						for ( var i in parsedData) {
 							var d = parsedData[i];
-							addMessage(d, lastLi);
+							addMessage(d, elementToAdd);
 						}
 						scrollToDown();
 					}
@@ -102,5 +104,6 @@ $(window).on('load', function() {
 		html = html + '</li>';
 
 		element.append(html);
+		// $(html).insertAfter(element);
 	}
 });

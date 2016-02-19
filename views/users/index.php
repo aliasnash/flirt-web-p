@@ -3,8 +3,7 @@
 
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-xs-12">
-			<a href="#" class="thumbnail">
-				<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$profile['photopath'];?>" alt="">
+			<a href="#" class="thumbnail"> <img class="img-responsive" src="<?=WEB_APP?>/images/<?=$profile['photopath'];?>" alt="">
 			</a>
 		</div>
 
@@ -28,6 +27,15 @@
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
 			<?=$profile['caption'];?>
 		</div>
+
+		<?php if($profile['online']) {?>
+		<div class="col-md-2 col-md-offset-4 col-xs-6 text-right no-right-spaces">
+			<strong>Статус:</strong>
+		</div>
+		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
+			<span style="color: green;"> В сети </span>
+		</div>
+		<?php }?>
 		<div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
 			<br>
 			<p class="text-muted"><?=$profile['description'];?></p>
@@ -49,8 +57,8 @@
 		<div id="links">
 			<?php foreach ($photos as $key => $value) {?>
 			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/<?=$value['photopath']?>" class="thumbnail" data-gallery>
-					<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$value['photopath']?>">
+				<a href="<?=WEB_APP?>/images/<?=$value['photopath']?>" class="thumbnail" data-gallery> <img class="img-responsive"
+					src="<?=WEB_APP?>/images/<?=$value['photopath']?>">
 				</a>
 			</div>
 			<?php }?>
@@ -65,10 +73,7 @@
 
 	<!-- Controls for the borderless lightbox -->
 	<h3 class="title"></h3>
-	<a class="prev">‹</a>
-	<a class="next">›</a>
-	<a class="close">×</a>
-	<a class="play-pause"></a>
+	<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a class="play-pause"></a>
 	<ol class="indicator"></ol>
 
 	<!-- The modal dialog, which will be used to wrap the lightbox content -->

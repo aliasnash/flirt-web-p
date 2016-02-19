@@ -41,4 +41,9 @@ $(window).on('load', function() {
 		}
 	}
 
+	$('li.media').click(function(event) {
+		var iduser = $(this).data('element-id');
+		$('#form-goto-chat #s').val(iduser);
+		$('#form-goto-chat form').submit();
+	});
 });
