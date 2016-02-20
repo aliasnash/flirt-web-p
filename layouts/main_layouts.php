@@ -30,7 +30,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script>
-	var contexPath = "<?=WEB_APP;?>";
+    var contexPath = "<?=WEB_APP;?>";
+    
+    var reqTimeoutMsgCount = "<?=REQ_TIMEOUT_MESSAGE_COUNT;?>";
+    var reqTimeoutUpdateVisit = "<?=REQ_TIMEOUT_UPDATE_VISIT;?>";
+    var reqTimeoutNewMst = "<?=REQ_TIMEOUT_SHOW_NEW_MSG;?>";
 </script>
 </head>
 

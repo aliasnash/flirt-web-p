@@ -4,7 +4,8 @@ $(window).on('load', function() {
 	var responseNew = true;
 
 	scrollToDown();
-	setInterval(newMessage, 1000 * 5);
+
+	if (reqTimeoutNewMst != 0 && reqTimeoutNewMst && reqTimeoutNewMst != 'undefined') setInterval(newMessage, reqTimeoutNewMst);
 
 	$('.media .close').click(function(event) {
 		$(this).parents("li").remove();
