@@ -9,13 +9,7 @@
 					<img src="<?=WEB_APP?>/images/<?=$value['photopath'];?>" alt="<?=$key.'#'.$value['photopath'];?>">
 				</a>
 				<div class="imgtext">
-					<?php if(!empty($value['nickname']) && $value['nickname']){?>
-    					<?=substr($value['nickname'], 13);?>
-    				<?php }else{?>
-    					<?=$value['nickname'];?>
-    				<?php }?>
-    				
-    				, <?=$value['age'];?> <span class="<?=$value['online']?'online':'offline'?> push-right">
+    					<?=$value['nickname'];?>, <?=$value['age'];?> <span class="<?=$value['online']?'online':'offline'?> push-right">
 						<strong>●</strong>
 					</span>
 				</div>
