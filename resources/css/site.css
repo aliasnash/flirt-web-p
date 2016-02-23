@@ -144,3 +144,17 @@ body {
 	height: 400px;
 	overflow: auto;
 }
+
+.add-photo-box .file-preview-frame, .add-photo-box .file-preview-frame:hover
+	{
+	margin: 0;
+	padding: 0;
+	border: none;
+	box-shadow: none;
+	text-align: center;
+}
+
+.add-photo-box .file-input {
+	display: table-cell;
+	max-width: 200px;
+}

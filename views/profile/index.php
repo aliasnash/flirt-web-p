@@ -43,6 +43,13 @@
 				</a>
 			</div>
 			<?php }?>
+			<div class="col-md-2 col-xs-2 new-padding">
+				<div class="text-center">
+					<a href="<?=WEB_APP?>/photo" class="btn btn-success btn-lg">
+						<i class="glyphicon glyphicon-plus"></i>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 

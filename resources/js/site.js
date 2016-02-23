@@ -65,4 +65,23 @@ $(window).on('load', function() {
 		});
 	});
 
+	$("#add-photo").fileinput({
+		overwriteInitial : true,
+		allowedFileTypes : [ "image" ],
+		showClose : false,
+		showCaption : false,
+		browseLabel : '',
+		removeLabel : '',
+		uploadLabel : '',
+		browseIcon : '<i class="glyphicon glyphicon-folder-open"></i>',
+		removeIcon : '<i class="glyphicon glyphicon-remove"></i>',
+		elErrorContainer : '#add-photo-errors',
+		msgErrorClass : 'alert alert-block alert-danger',
+		defaultPreviewContent : '<img src="' + contexPath + '/resources/images/default_avatar.jpg">',
+
+		layoutTemplates : {
+			main2 : '{preview} {browse} {remove} {upload}'
+		}
+	});
+
 });

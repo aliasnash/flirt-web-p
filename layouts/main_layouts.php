@@ -10,12 +10,10 @@
 <link href="<?=WEB_APP?>/resources/ico/favicon.ico" type="image/x-icon" rel="icon" />
 <link href="<?=WEB_APP?>/resources/ico/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 
-<!-- <link href="<?=WEB_APP?>/resources/thirdpart/jquery/css/jquery-ui.min.css" rel="stylesheet">-->
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!-- <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-datepicker3.min.css" rel="stylesheet">-->
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<!-- <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/fileinput.min.css" rel="stylesheet">-->
+<link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/fileinput.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/jquery/css/blueimp-gallery.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-image-gallery.min.css" rel="stylesheet">
@@ -57,13 +55,10 @@
 	</div>
 
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-1.11.3.min.js"></script>
-	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery-ui.min.js"></script>-->
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap.min.js"></script>
-	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-datepicker.min.js"></script>-->
-	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-datepicker.ru.min.js"></script>-->
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-select.min.js"></script>
-	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput.min.js"></script>-->
-	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput_locale_ru.js"></script>-->
+	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput.min.js"></script>
+	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput_locale_ru.js"></script>
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery.blueimp-gallery.min.js"></script>
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-image-gallery.min.js"></script>
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery.Jcrop.min.js"></script>
