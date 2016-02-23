@@ -43,4 +43,26 @@ $(window).on('load', function() {
 		$('#blueimp-gallery').data('fullScreen', true);
 		blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
 	});
+
+	function finishSelection(selection) {
+		$('input[name="x1"]').val(selection.x);
+		$('input[name="y1"]').val(selection.y);
+		$('input[name="x2"]').val(selection.x2);
+		$('input[name="y2"]').val(selection.y2);
+		$('input[name="w"]').val(selection.w);
+		$('input[name="h"]').val(selection.h);
+	}
+
+	jQuery(function($) {
+		$('.foo img').Jcrop({
+			onSelect : finishSelection,
+			onChange : finishSelection,
+			allowResize : false,
+			allowSelect : false,
+			setSelect : [ 0, 0, 200, 200 ],
+			bgColor : 'black',
+			bgOpacity : .4
+		});
+	});
+
 });
