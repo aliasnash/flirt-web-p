@@ -6,6 +6,9 @@ $(window).on('load', function() {
 	msgCount();
 	visit();
 
+	if (reqTimeoutMsgCount != 0 && reqTimeoutMsgCount && reqTimeoutMsgCount != 'undefined') setInterval(msgCount, reqTimeoutMsgCount);
+	if (reqTimeoutUpdateVisit != 0 && reqTimeoutUpdateVisit && reqTimeoutUpdateVisit != 'undefined') setInterval(visit, reqTimeoutUpdateVisit);
+
 	setInterval(msgCount, 1000 * 12);
 	setInterval(visit, 1000 * 91);
 

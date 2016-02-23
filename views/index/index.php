@@ -9,7 +9,7 @@
 					<img src="<?=WEB_APP?>/images/<?=$value['photopath'];?>" alt="<?=$key.'#'.$value['photopath'];?>">
 				</a>
 				<div class="imgtext">
-    				<?=$value['nickname'];?>, <?=$value['age'];?> <span class="<?=$value['online']?'online':'offline'?> push-right">
+    					<?=$value['nickname'];?>, <?=$value['age'];?> <span class="<?=$value['online']?'online':'offline'?> push-right">
 						<strong>●</strong>
 					</span>
 				</div>

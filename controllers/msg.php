@@ -30,9 +30,10 @@ class Controller_Msg extends Controller_Base {
 		
 		if ($idu > 0) {
 			$model = new Model_Message();
-			$msgdata = $model->getMessagesAll($idu);
+			$model->getMessagesAll($idu, $unreadedMessage, $restMessage);
 			
-			$this->template->vars('msgdata', $msgdata);
+			$this->template->vars('unreadedMessage', $unreadedMessage);
+			$this->template->vars('restMessage', $restMessage);
 			$this->template->view('all', true);
 		} else {
 			unset($_SESSION['idu']);
