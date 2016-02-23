@@ -25,16 +25,9 @@ class Controller_Index extends Controller_Base {
 		
 		$idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
 		
-		$msg = isset($_POST['msg']) ? $_POST['msg'] : '';
-		if (!empty($msg)) {
-			unset($_POST['msg']);
-			
-			$model->createMessage(1, 13, $msg);
-		}
+
+// 		new Imagick();
 		
-		$messages = $model->getMessages(1, 13);
-		
-		$this->template->vars('messages', $messages);
 		$this->template->view('test', $idu > 0);
 	}
 
