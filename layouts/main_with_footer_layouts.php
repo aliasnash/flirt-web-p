@@ -19,6 +19,7 @@
 <link href="<?=WEB_APP?>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/jquery/css/blueimp-gallery.min.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/thirdpart/bootstrap/css/bootstrap-image-gallery.min.css" rel="stylesheet">
+<link href="<?=WEB_APP?>/resources/thirdpart/jquery/css/jquery.Jcrop.min.css" rel="stylesheet">
 
 <link href="<?=WEB_APP?>/resources/css/sidebar.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/css/site.css" rel="stylesheet">
@@ -70,6 +71,7 @@
 	<!-- <script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/fileinput_locale_ru.js"></script>-->
 	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery.blueimp-gallery.min.js"></script>
 	<script src="<?=WEB_APP?>/resources/thirdpart/bootstrap/js/bootstrap-image-gallery.min.js"></script>
+	<script src="<?=WEB_APP?>/resources/thirdpart/jquery/js/jquery.Jcrop.min.js"></script>
 
 	<script src="<?=WEB_APP?>/resources/js/site.js"></script>
 	<?php if ($logged) { ?>
