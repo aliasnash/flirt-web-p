@@ -2,14 +2,14 @@
 	<div class="panel-body">
 		<div id="box" class="chat-window">
 			<ul class="media-list">
+			<?php //if($msgdata){?>
 			<?php foreach($msgdata as $key => $value) {?>
     			<li class="media" data-element-id="<?=$value['idus'];?>">
 					<div class="media-body bg-success">
 						<div class="media">
-							<a class="pull-left" href="#"> <img class="media-object img-circle " style="width: 50px;"
-								src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
+							<a class="pull-left" href="#"> <img class="media-object img-circle " style="width: 50px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
 							</a>
-							<div class="media-body text-left" >
+							<div class="media-body text-left">
     							<?=$value['nickname'];?>&nbsp;&nbsp;
 								<span style="color:<?=$value['online']?'green':'red'?>;">
 									<strong>●</strong>
@@ -20,6 +20,7 @@
 					</div>
 				</li>
 			<?php }?>
+			<?php //}?>
 			</ul>
 		</div>
 	</div>
