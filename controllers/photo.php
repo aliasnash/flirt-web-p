@@ -28,8 +28,11 @@ class Controller_Photo extends Controller_Base {
 				echo ("<BR>");
 				print_r($info);
 				
+				$width = $info[0];
+				$height = $info[1];
+				$mime = $info['mime'];
 				
-				list($width, $height, $mime) = getimagesize($tmpFile);
+				// list($width, $height, $mime) = getimagesize($tmpFile);
 				if ($width == null && $height == null) {
 					// header('Location:' . WEB_APP);
 					return;
