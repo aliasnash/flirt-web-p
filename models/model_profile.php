@@ -34,4 +34,8 @@ class Model_Profile {
     public function updateLastVisit($id) {
         $this->userDao->updateVisitUsersById($id);
     }
+    
+    public function uploadPhoto($iduser, $photopath) {
+        $this->userDao->uploadPhoto($iduser, $photopath);
+    }
 }

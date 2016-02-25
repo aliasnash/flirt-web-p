@@ -17,20 +17,36 @@ define('REQ_TIMEOUT_SHOW_NEW_MSG', 1000 * 5);
 // define('DB_USER', 'postgres');
 // define('DB_PASS', 'postgres');
 
+define('PHOTO_SIZE', 500);
+
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-	define('BRAND', 'TEST');
-	
-	define('DB_HOST', '188.226.225.95');
-	define('DB_PORT', '5432');
-	define('DB_NAME', 'mobiflirt');
-	define('DB_USER', 'postgres');
-	define('DB_PASS', 'boroboro40gb');
+    define('BRAND', 'TEST');
+    define('PHOTO_URL_PREFIX', 'http://localhost:8090');
+    define('LOCAL_DIR_PHOTO', 'd:/develop/Eclipse Workspace/Eclipse PHP Learning/flirt/images/');
+    
+    define('DB_HOST', '188.226.225.95');
+    define('DB_PORT', '5432');
+    define('DB_NAME', 'mobiflirt');
+    define('DB_USER', 'postgres');
+    define('DB_PASS', 'boroboro40gb');
 } else {
-	define('BRAND', 'Mobi-Flirt');
-	
-	define('DB_HOST', '127.0.0.1');
-	define('DB_PORT', '5432');
-	define('DB_NAME', 'mobiflirt');
-	define('DB_USER', 'postgres');
-	define('DB_PASS', 'postgres');
+    define('BRAND', 'Mobi-Flirt');
+    define('PHOTO_URL_PREFIX', '/flirt/p');
+    define('LOCAL_DIR_PHOTO', '/opt/photo/');
+    
+    define('DB_HOST', '127.0.0.1');
+    define('DB_PORT', '5432');
+    define('DB_NAME', 'mobiflirt');
+    define('DB_USER', 'postgres');
+    define('DB_PASS', 'postgres');
 }
+
+// location /flirt/p/ {
+//     root "d:/develop/Eclipse Workspace/Eclipse PHP Learning/flirt/images/";
+//     expires           max;
+// }
+
+// location / {
+//     root "d:/develop/Eclipse Workspace/Eclipse PHP Learning/flirt/images/";
+//     expires           max;
+// }

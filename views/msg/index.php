@@ -13,7 +13,7 @@
 								</button>
 							</div>
 							<p class="pull-right" style="margin-bottom: 0px;">
-								<img class="media-object img-circle " style="width: 60px;" src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
+								<img class="media-object img-circle " style="width: 60px;" src="<?=PHOTO_URL_PREFIX?>/<?=$value['pspath'];?>" />
 							</p>
 							<div class="media-body text-right">
     							<?=$value['message'];?> <br /> <small class="text-muted too-small"><?=$value['dateadded'];?></small>
@@ -29,7 +29,7 @@
 								</button>
 							</div>
 							<a class="pull-left" href="<?=WEB_APP?>/users/profile?id=<?=$value['idus'];?>"> <img class="media-object img-circle " style="width: 60px;"
-								src="<?=WEB_APP?>/images/<?=$value['pspath'];?>" />
+								src="<?=PHOTO_URL_PREFIX?>/<?=$value['pspath'];?>" />
 							</a>
 							<div class="media-body text-left">
     							<?=$value['message'];?> <br /> <small class="text-muted too-small"><?=$value['dateadded'];?></small>

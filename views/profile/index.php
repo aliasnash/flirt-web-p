@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-xs-12">
 			<a href="#" class="thumbnail">
-				<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$profile['photopath'];?>" alt="">
+				<img class="img-responsive" src="<?=PHOTO_URL_PREFIX?>/<?=$profile['photopath'];?>" alt="">
 			</a>
 		</div>
 
@@ -38,8 +38,8 @@
 		<div id="links">
 			<?php foreach ($photos as $key => $value) {?>
 			<div class="col-md-2 col-xs-2 new-padding">
-				<a href="<?=WEB_APP?>/images/<?=$value['photopath']?>" class="thumbnail" data-gallery>
-					<img class="img-responsive" src="<?=WEB_APP?>/images/<?=$value['photopath']?>">
+				<a href="<?=PHOTO_URL_PREFIX?>/<?=$value['photopath']?>" class="thumbnail" data-gallery>
+					<img class="img-responsive" src="<?=PHOTO_URL_PREFIX?>/<?=$value['photopath']?>">
 				</a>
 			</div>
 			<?php }?>

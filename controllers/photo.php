@@ -2,83 +2,73 @@
 
 class Controller_Photo extends Controller_Base {
 
-	function index() {
-		$idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
-		
-		if ($idu > 0) {
-			$this->template->view('index', true);
-		} else {
-			unset($_SESSION['idu']);
-			header('Location:' . WEB_APP);
-		}
-	}
+    function index() {
+        $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        if ($idu > 0) {
+            $this->template->view('index', true);
+        } else {
+            unset($_SESSION['idu']);
+            header('Location:' . WEB_APP);
+        }
+    }
 
-	function upload() {
-		$idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
-		
-		if ($idu > 0) {
-			
-			if (isset($_FILES['add-photo'])) {
-				var_dump($_FILES['add-photo']);
-				
-				$tmpFile = $_FILES['add-photo']["tmp_name"];
-				
-				$info = getimagesize($tmpFile);
-				
-				echo ("<BR>");
-				print_r($info);
-				
-				$width = $info[0];
-				$height = $info[1];
-				$mime = $info['mime'];
-				
-				// list($width, $height, $mime) = getimagesize($tmpFile);
-				if ($width == null && $height == null) {
-					// header('Location:' . WEB_APP);
-					return;
-				} else {
-					$fileName = 'c:/1.jpg';
-					
-					echo ("<BR>.mime:$mime");
-					
-					if ($mime == 'image/jpeg')
-						$image = imagecreatefromjpeg($tmpFile);
-					elseif ($mime == 'image/gif')
-						$image = imagecreatefromgif($tmpFile);
-					elseif ($mime == 'image/png')
-						$image = imagecreatefrompng($tmpFile);
-					
-					echo ("<BR>.m:$image");
-					
-					$side = min($width, $height);
-					// $side = min($side, 600);
-					
-					echo ("<BR>.side:$side");
-					
-					$rect = array('x' => 0, 'y' => 0, 'width' => $side, 'height' => $side);
-					$image = imagecrop($image, $rect);
-					echo ("<BR>.m:$image");
-					
-					imagejpeg($image, $fileName, 80);
-					
-					list($width, $height) = getimagesize($fileName);
-					
-					echo ("<BR>.w:$width");
-					echo ("<BR>.h:$height");
-					
-					// $image = new Imagick("d:/develop/eclipse workspace/Eclipse PHP Learning/flirt/images/23.jpg");
-					// // $image = new Imagick($tmpFile);
-					
-					// $image->thumbnailImage(400, 400);
-					// $image->writeImage($fileName);
-				}
-			}
-			
-			// header('Location:' . WEB_APP . '/profile/');
-		} else {
-			unset($_SESSION['idu']);
-			header('Location:' . WEB_APP);
-		}
-	
-	}
+    function upload() {
+        $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        if ($idu > 0) {
+            if (isset($_FILES['add-photo'])) {
+                $tmpFile = $_FILES['add-photo']['tmp_name'];
+                $info = getimagesize($tmpFile);
+                
+                $width = $info[0];
+                $height = $info[1];
+                $mime = $info['mime'];
+                
+                if ($width != null && $height != null) {
+                    $md = md5(time());
+                    $path = trim(LOCAL_DIR_PHOTO, '/\\') . '/';
+                    
+                    $dir = $path . $idu . '/';
+                    if (!is_dir($dir)) {
+                        mkdir($dir, 0777, true);
+                    }
+                    
+                    $fileName = $idu . '/' . $md . '.jpg';
+                    $fileFullPath = $path . $fileName;
+                    
+                    if ($mime == 'image/jpeg')
+                        $image = imagecreatefromjpeg($tmpFile);
+                    if ($mime == 'image/png')
+                        $image = imagecreatefrompng($tmpFile);
+                    
+                    if (isset($image)) {
+                        $side = min($width, $height);
+                        $rect = array('x' => 0, 'y' => 0, 'width' => $side, 'height' => $side);
+                        
+                        $imageThumb = imagecreatetruecolor(PHOTO_SIZE, PHOTO_SIZE);
+                        $image = imagecrop($image, $rect);
+                        imagecopyresampled($imageThumb, $image, 0, 0, 0, 0, PHOTO_SIZE, PHOTO_SIZE, $side, $side);
+                        imagejpeg($imageThumb, $fileFullPath, 80);
+                        
+                        $model = new Model_Profile();
+                        $model->uploadPhoto($idu, $fileName);
+                        
+                        imagedestroy($image);
+                        imagedestroy($imageThumb);
+                    } else {
+                        header('Location:' . WEB_APP . '/photo/');
+                        return;
+                    }
+                } else {
+                    header('Location:' . WEB_APP . '/photo/');
+                    return;
+                }
+            }
+            header('Location:' . WEB_APP . '/profile/');
+        } else {
+            unset($_SESSION['idu']);
+            header('Location:' . WEB_APP);
+        }
+    }
 }

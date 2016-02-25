@@ -253,4 +253,10 @@ class UsersDao extends Dao {
         }
         return array();
     }
+    
+    public function uploadPhoto($iduser, $photopath) {
+        $params = array('iduser' => $iduser, 'photopath' => $photopath);
+        $stmt = static::$db->prepare("INSERT INTO photos(iduser, photopath) VALUES(:iduser, :photopath)");
+        $stmt->execute($params);
+    }
 }

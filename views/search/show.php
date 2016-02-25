@@ -9,7 +9,7 @@
     		<?php foreach($userList as $key => $value) {?>
 			<div class="col-xs-6 col-md-3 new-padding">
 				<a href="<?=WEB_APP?>/users/profile?id=<?=$value['id'];?>" class="thumbnail">
-					<img src="<?=WEB_APP?>/images/<?=$value['photopath'];?>" alt="<?=$key.'#'.$value['photopath'];?>">
+					<img src="<?=PHOTO_URL_PREFIX?>/<?=$value['photopath'];?>" alt="<?=$key.'#'.$value['photopath'];?>">
 				</a>
 				<div class="imgtext">
     				<?=$value['nickname'];?>, <?=$value['age'];?> <span class="<?=$value['online']?'online':'offline'?> push-right">

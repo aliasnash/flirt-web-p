@@ -67,7 +67,8 @@ $(window).on('load', function() {
 
 	$("#add-photo").fileinput({
 		overwriteInitial : true,
-		allowedFileTypes : [ "image" ],
+		// allowedFileTypes : [ "image" ],
+		allowedFileExtensions : [ 'jpg', 'jpeg', 'png' ],
 		showClose : false,
 		showCaption : false,
 		browseLabel : '',
