@@ -6,7 +6,7 @@
 </div>
 <div class="my-navbar-right">
 	<a href="<?=WEB_APP?>/enter">
-		<span class="fa fa-sign-in fa-2x"></span>
+		<span class="fa fa-sign-in fa-lg"></span>
 		&nbsp;Вход
 	</a>
 </div>

@@ -30,7 +30,8 @@
 <![endif]-->
 <script>
 	var contexPath = "<?=WEB_APP;?>";
-
+	var contexPhotoPath = "<?=PHOTO_URL_PREFIX;?>";
+	
     var reqTimeoutMsgCount = <?=REQ_TIMEOUT_MESSAGE_COUNT;?>;
     var reqTimeoutUpdateVisit = <?=REQ_TIMEOUT_UPDATE_VISIT;?>;
     var reqTimeoutNewMst = <?=REQ_TIMEOUT_SHOW_NEW_MSG;?>;	

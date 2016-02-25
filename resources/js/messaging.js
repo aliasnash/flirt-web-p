@@ -86,14 +86,14 @@ $(window).on('load', function() {
 			html = html + '<div class="media-body bg-info">';
 			html = html + '<div class="media">';
 			html = html + '<p class="pull-right" style="margin-bottom: 0px;">';
-			html = html + '<img class="media-object img-circle" style="width: 60px;" src="' + contexPath + '/images/' + message.pspath + '"/>';
+			html = html + '<img class="media-object img-circle" style="width: 60px;" src="' + contexPhotoPath + '/' + message.pspath + '"/>';
 			html = html + '</p>';
 			html = html + '<div class="media-body text-right">';
 		} else {
 			html = html + '<div class="media-body bg-warning">';
 			html = html + '<div class="media">';
 			html = html + '<a class="pull-left" href="' + contexPath + '/users/profile?id=' + message.idus + '">';
-			html = html + '<img class="media-object img-circle " style="width: 60px;" src="' + contexPath + '/images/' + message.pspath + '" />';
+			html = html + '<img class="media-object img-circle " style="width: 60px;" src="' + contexPhotoPath + '/' + message.pspath + '" />';
 			html = html + '</a>';
 			html = html + '<div class="media-body text-left">';
 		}

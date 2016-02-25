@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-	<div class="lead text-center heading">Безлимитные знакомства в твоем телефоне</div>
+	<div class="lead text-center heading ">Безлимитные знакомства в твоем телефоне</div>
 	<div class="panel-body">
 		<div class="row">
 		<?php if (!empty($userList)) {?>
