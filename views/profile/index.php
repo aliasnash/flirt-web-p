@@ -69,12 +69,23 @@
 	</div>
 </div>
 
+<style>
+.blueimp-gallery>.description {
+	position: absolute;
+	top: 30px;
+	left: 15px;
+	color: red;
+/* 	display: none; */
+}
+</style>
+
 <div id="blueimp-gallery" class="blueimp-gallery " data-use-bootstrap-modal="false">
 	<!-- The container for the modal slides -->
 	<div class="slides"></div>
 
 	<!-- Controls for the borderless lightbox -->
 	<h3 class="title"></h3>
+	<p class="description"></p>
 	<a class="prev">‹</a>
 	<a class="next">›</a>
 	<a class="close">×</a>
