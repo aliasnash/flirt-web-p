@@ -3,20 +3,28 @@
 class UsersDao extends Dao {
 
     public function getUsersList($id) {
-        $users = static::$db->query("SELECT id, nickname, birthday, idcity, sex_search FROM users WHERE id = $id")->fetchAll(PDO::FETCH_ASSOC);
+        $users = static::$db->query("SELECT id, msisdn, nickname, birthday, idcity FROM users WHERE id = $id")->fetchAll(PDO::FETCH_ASSOC);
         $data = array();
         
         if (count($users) > 0) {
             $user = $users[0];
             
-            $stmt = static::$db->prepare("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '" . MIN_TIMEOUT_ONLINE . " minute' AS online 
+            if (!empty($user['msisdn'])) {
+                $stmt = static::$db->prepare("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '" . MIN_TIMEOUT_ONLINE . " minute' AS online 
                     FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id 
 				    WHERE isactive=true AND u.id != :id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL AND idcity = :idcity AND 
                     birthday BETWEEN date(:bd) - interval '" . SEARCH_YEAR_DIFF . " year' AND date(:bd) + interval '" . SEARCH_YEAR_DIFF . " year' 
-				    ORDER BY online desc, likecount DESC, random() limit " . REC_ON_PAGE);
-            
-            $stmt->execute(array('id' => $user['id'], 'idcity' => $user['idcity'], 'bd' => $user['birthday']));
-            // $stmt->debugDumpParams();
+				    ORDER BY online desc, likecount DESC, random() LIMIT " . REC_ON_PAGE);
+                
+                $stmt->execute(array('id' => $user['id'], 'idcity' => $user['idcity'], 'bd' => $user['birthday']));
+            } else {
+                $stmt = static::$db->prepare("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '" . MIN_TIMEOUT_ONLINE . " minute' AS online
+                    FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id
+				    WHERE isactive=true AND u.id != :id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL
+				    ORDER BY online desc, likecount DESC, random() LIMIT " . REC_ON_PAGE);
+                
+                $stmt->execute(array('id' => $id));
+            }
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         return $data;
@@ -64,7 +72,7 @@ class UsersDao extends Dao {
             if (!empty($idcity) && $idcity > 0)
                 $where .= " AND idcity = $idcity ";
             
-            $offset = ($page - 1) * 6;
+            $offset = ($page - 1) * REC_ON_PAGE;
             $stmt = static::$db->query("SELECT u.id, nickname, date_part('year', age(current_date, birthday)) as age, p.photopath, current_timestamp - lastvisit < interval '10 minute' AS online
                                     FROM users u LEFT JOIN photos p ON u.idmainphoto = p.id
                                     WHERE isactive=true AND u.id != $id AND p.photopath IS NOT NULL AND u.msisdn IS NOT NULL $where
@@ -132,10 +140,17 @@ class UsersDao extends Dao {
         return array();
     }
 
+    public function getUsersByClickId($clickid) {
+        $stmt = static::$db->prepare("SELECT id, msisdn FROM users WHERE clickid = :clickid");
+        $stmt->execute(array('clickid' => $clickid));
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
     public function removeUserByMsisdn($msisdn) {
         $stmt = static::$db->prepare("INSERT INTO users_removed
-                (id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto)
-                (SELECT id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto 
+                (id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid)
+                (SELECT id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid 
                 FROM users WHERE msisdn=:msisdn)");
         $stmt->execute(array('msisdn' => $msisdn));
         $stmt = static::$db->prepare("DELETE FROM users WHERE msisdn = :msisdn");
@@ -145,6 +160,18 @@ class UsersDao extends Dao {
     public function updateProfile($profile) {
         $params = array('id' => $profile['id'], 'nickname' => $profile['nickname'], 'sex' => $profile['sex'], 'birthday' => $profile['birthday'], 'idcity' => $profile['idcity'], 'description' => $profile['description']);
         $stmt = static::$db->prepare("UPDATE users SET nickname = :nickname, sex = :sex, birthday = date(:birthday), idcity = :idcity, description = :description WHERE id = :id");
+        $stmt->execute($params);
+    }
+
+    public function generateProfile($clickid) {
+        $params = array('clickid' => $clickid);
+        $stmt = static::$db->prepare("INSERT INTO users(nickname, sex, isactive, lastvisit, clickid) VALUES('UNKNOWN', 0, true, now(), :clickid)");
+        $stmt->execute($params);
+    }
+
+    public function activateProfile($clickid, $msisdn, $idoperator) {
+        $params = array('clickid' => $clickid, 'msisdn' => $msisdn, 'idoperator' => $idoperator);
+        $stmt = static::$db->prepare("UPDATE users SET msisdn = :msisdn, idoperator = :idoperator WHERE clickid = :clickid");
         // $stmt->debugDumpParams();
         $stmt->execute($params);
     }
@@ -253,10 +280,29 @@ class UsersDao extends Dao {
         }
         return array();
     }
-    
+
     public function uploadPhoto($iduser, $photopath) {
         $params = array('iduser' => $iduser, 'photopath' => $photopath);
         $stmt = static::$db->prepare("INSERT INTO photos(iduser, photopath) VALUES(:iduser, :photopath)");
+        $stmt->execute($params);
+    }
+
+    public function payHistory($channelid, $clickid, $pay, $op, $msisdn) {
+        $params = array('msisdn' => $msisdn, 'idoperator' => $op, 'summa' => $pay, 'channelid' => $channelid, 'clickid' => $clickid);
+        $stmt = static::$db->prepare("INSERT INTO payment_history(msisdn, idoperator, summa, channelid, clickid) VALUES (:msisdn, :idoperator, :summa, :channelid, :clickid)");
+        $stmt->execute($params);
+    }
+
+    public function saveStat($iduser, $page) {
+        $params = array('iduser' => $iduser, 'page' => $page);
+        $stmt = static::$db->prepare("INSERT INTO user_actions(iduser, page) VALUES(:iduser, :page)");
+        $stmt->execute($params);
+    }
+
+    public function saveOperator($msisdn, $request, $response) {
+        $params = array('msisdn' => $msisdn, 'request' => $request, 'response' => $response);
+        var_dump($params);
+        $stmt = static::$db->prepare("INSERT INTO operator_stat(msisdn, request, response) VALUES(:msisdn, :request, :response)");
         $stmt->execute($params);
     }
 }

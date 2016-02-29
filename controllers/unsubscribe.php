@@ -11,6 +11,8 @@ class Controller_Unsubscribe extends Controller_Base {
         $telco = isset($_GET['o']) ? htmlspecialchars($_GET['o']) : "";
         unset($_GET['o']);
         
+        $this->stat->saveStat($idu, "unsubscribe/index [$msisdn, $telco]");
+        
         if (!empty($msisdn)) {
             $telco = isset($_POST['o']) ? htmlspecialchars($_POST['o']) : "";
             unset($_POST['o']);
@@ -19,7 +21,8 @@ class Controller_Unsubscribe extends Controller_Base {
                 $model = new Model_Profile();
                 $utilz = new Utilz();
                 $result = $utilz->unsubscribe($msisdn, $telco);
-                $model->removeProfile($msisdn);
+                if ($result === '1')
+                    $model->removeProfile($msisdn);
                 
                 unset($_SESSION['idu']);
                 header('Location:' . WEB_APP);

@@ -5,6 +5,8 @@ class Controller_Photo extends Controller_Base {
     function index() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
         
+        $this->stat->saveStat($idu, "photo/index");
+        
         if ($idu > 0) {
             $this->template->view('index', true);
         } else {
@@ -16,10 +18,12 @@ class Controller_Photo extends Controller_Base {
     function upload() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
         
+        $this->stat->saveStat($idu, "photo/upload");
+        
         if ($idu > 0) {
             if (isset($_FILES['add-photo'])) {
-            	var_dump($_FILES['add-photo']);
-            	
+                var_dump($_FILES['add-photo']);
+                
                 $tmpFile = $_FILES['add-photo']['tmp_name'];
                 $info = getimagesize($tmpFile);
                 

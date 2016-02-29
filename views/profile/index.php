@@ -4,7 +4,11 @@
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-xs-12">
 			<a href="#" class="thumbnail">
+			<?php if(empty($profile['photopath'])){?>
+				<img class="img-responsive" src="<?=WEB_APP?>/resources/images/rand_avatar5.jpg" alt="">
+			<?php }else{?>
 				<img class="img-responsive" src="<?=PHOTO_URL_PREFIX?>/<?=$profile['photopath'];?>" alt="">
+			<?php }?>
 			</a>
 		</div>
 
@@ -12,25 +16,26 @@
 			<strong>Имя:</strong>
 		</div>
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
-			<?=$profile['nickname'];?> <?=$profile['sex']==1?'<i class="fa fa-mars fa-lg text-info" ></i>':'';?> <?=$profile['sex']==2?'<i class="fa fa-venus fa-lg text-danger"></i>':'';?>
+			<?=$profile['nickname'];?> <?=$profile['sex']==1?'<i class="fa fa-mars fa-lg text-info" ></i>':'';?> <?=$profile['sex']==2?'<i class="fa fa-venus fa-lg text-danger"></i>':'';?>&nbsp;
 		</div>
 
 		<div class="col-md-2 col-md-offset-4 col-xs-6 text-right no-right-spaces">
 			<strong>День рождения:</strong>
 		</div>
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
-			<?=$profile['birthday'];?>
+			<?=$profile['birthday'];?>&nbsp;
 		</div>
 
 		<div class="col-md-2 col-md-offset-4 col-xs-6 text-right no-right-spaces">
 			<strong>Город:</strong>
 		</div>
 		<div class="col-md-2 col-xs-6 text-left no-left-spaces">
-			<?=$profile['caption'];?>
+			<?=$profile['caption'];?>&nbsp;
 		</div>
 		<div class="col-md-4 col-md-offset-4 col-xs-12 text-center">
 			<br>
 			<p class="text-muted"><?=$profile['description'];?></p>
+			&nbsp;
 		</div>
 	</div>
 

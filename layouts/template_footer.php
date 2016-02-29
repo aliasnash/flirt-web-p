@@ -3,15 +3,15 @@
 </div>
 
 <div class="text-muted too-small">
-	<a href="<?=WEB_APP?>/info?i=offer&o=mts">Правила предоставления Подписки на Контент</a>
+	<a href="<?=WEB_APP?>/info?i=offer&o=2">Правила предоставления Подписки на Контент</a>
 	|
-	<a href="<?=WEB_APP?>/unsubscribe?o=mts">Управление Подпиской на Контент</a>
+	<a href="<?=WEB_APP?>/unsubscribe?o=2">Управление Подпиской на Контент</a>
 	|
 	<?php if(!$logged) {?>
 		<a href="<?=WEB_APP?>/enter">Получить контент</a>
 		|
 	<?php }?>
-	<a href="<?=WEB_APP?>/info?i=price&o=mts">Стоимость услуги</a>
+	<a href="<?=WEB_APP?>/info?i=price&o=2">Стоимость услуги</a>
 </div>
 
 <div class="text-muted too-small">
@@ -19,11 +19,11 @@
 </div>
 
 <div class="text-muted too-small">
-	<a href="<?=WEB_APP?>/info?i=offer&o=beeline">Правила предоставления Подписки на Контент</a>
+	<a href="<?=WEB_APP?>/info?i=offer&o=1">Правила предоставления Подписки на Контент</a>
 	|
-	<a href="<?=WEB_APP?>/unsubscribe?o=beeline">Управление Подпиской на Контент</a>
+	<a href="<?=WEB_APP?>/unsubscribe?o=1">Управление Подпиской на Контент</a>
 	|
-	<a href="<?=WEB_APP?>/info?i=price&o=beeline">Стоимость услуги</a>
+	<a href="<?=WEB_APP?>/info?i=price&o=1">Стоимость услуги</a>
 </div>
 
 <div class="text-muted too-small">
@@ -31,11 +31,11 @@
 </div>
 
 <div class="text-muted too-small">
-	<a href="<?=WEB_APP?>/info?i=offer&o=tele2">Правила предоставления услуги</a>
+	<a href="<?=WEB_APP?>/info?i=offer&o=4">Правила предоставления услуги</a>
 	|
-	<a href="<?=WEB_APP?>/unsubscribe?o=tele2">Отключить подписку</a>
+	<a href="<?=WEB_APP?>/unsubscribe?o=4">Отключить подписку</a>
 	|
-	<a href="<?=WEB_APP?>/info?i=price&o=tele2">Стоимость услуги</a>
+	<a href="<?=WEB_APP?>/info?i=price&o=4">Стоимость услуги</a>
 </div>
 
 <div class="text-muted too-small">

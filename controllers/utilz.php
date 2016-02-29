@@ -51,4 +51,91 @@ class Controller_Utilz extends Controller_Base {
             $model->createMessage($idu, $iduser, $message);
         }
     }
+
+    function on() {
+        // http://mobi-flirt.ru/flirt/utilz/on?status=new&channel_id={channel_id}&click_id={click_id}&op={operator_id}&msisdn={msisdn}
+        
+        // http://{partner_url}?status=new&channel_id={channel_id}&click_id={click_id}&op={operator_id}&msisdn={msisdn}
+        
+        // {click_id} – значение get-параметра click_id, полученное от партнера при переходе пользователя;
+        // {channel_id} – id канала в системе MoPromo;
+        // {operator_id} – id оператора (1 – Билайн, 2 – МТС, 3 – Мегафон, 4 – Теле2);
+        // {msisdn} – MSISDN (номер телефона Абонента) для последующей авторизации на Сервисе
+        
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $channelid = intval(isset($_GET['channel_id']) ? $_GET['channel_id'] : 0);
+        $clickid = intval(isset($_GET['click_id']) ? $_GET['click_id'] : 0);
+        $op = intval(isset($_GET['op']) ? $_GET['op'] : 0);
+        $msisdn = isset($_GET['msisdn']) ? $_GET['msisdn'] : '';
+        
+        $response = '0';
+        
+        if (!empty($msisdn) && intval($msisdn) > 0 && $op > 0 && $clickid > 0) {
+            $model = new Model_Profile();
+            $model->activateProfile($clickid, $msisdn, $op);
+            
+            $response = '1';
+        }
+        
+        $this->stat->saveOperator($msisdn, $_SERVER["REQUEST_URI"], $response);
+        echo $response;
+    }
+
+    function off() {
+        // http://mobi-flirt.ru/flirt/utilz/off?status=quit&channel_id={channel_id}&click_id={click_id}&op={operator_id}&msisdn={msisdn}
+        
+        // http://{partner_url}?status=quit&channel_id={channel_id}&click_id={click_id}&op={operator_id}&msisdn={msisdn}
+        
+        // {click_id} – значение get-параметра click_id, полученное от партнера при переходе пользователя;
+        // {channel_id} – id канала в системе MoPromo;
+        // {operator_id} – id оператора (1 – Билайн, 2 – МТС, 3 – Мегафон, 4 – Теле2);
+        // {msisdn} – MSISDN (номер телефона Абонента).
+        
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $channelid = intval(isset($_GET['channel_id']) ? $_GET['channel_id'] : 0);
+        $clickid = intval(isset($_GET['click_id']) ? $_GET['click_id'] : 0);
+        $op = intval(isset($_GET['op']) ? $_GET['op'] : 0);
+        $msisdn = isset($_GET['msisdn']) ? $_GET['msisdn'] : '';
+        
+        $response = '0';
+        
+        if (!empty($msisdn) && intval($msisdn) > 0 && $op > 0 && $clickid > 0) {
+            $model = new Model_Profile();
+            $model->removeProfile($msisdn);
+            
+            $response = '1';
+        }
+        
+        $this->stat->saveOperator($msisdn, $_SERVER["REQUEST_URI"], $response);
+        echo $response;
+    }
+
+    function charge() {
+        // http://mobi-flirt.ru/flirt/utilz/charge?status=pay&channel_id={channel_id}&click_id={click_id}&pay={sum_payed}&op={operator_id}&msisdn={msisdn}
+        
+        // http://{partner_url}?status=pay&channel_id={channel_id}&click_id={click_id}&pay={sum_payed}&op={operator_id}&msisdn={msisdn}
+        
+        // {click_id} – значение get-параметра click_id, полученное от партнера при переходе пользователя;
+        // {sum_payed} – сумма списания с абонента, в рублях с НДС (0 – неуспешное списание);
+        // {channel_id} – id канала в системе MoPromo;
+        // {operator_id} – id оператора (1 – Билайн, 2 – МТС, 3 – Мегафон, 4 – Теле2);
+        // {msisdn} – MSISDN (номер телефона Абонента).
+        
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $channelid = intval(isset($_GET['channel_id']) ? $_GET['channel_id'] : 0);
+        $clickid = intval(isset($_GET['click_id']) ? $_GET['click_id'] : 0);
+        $pay = floatval(isset($_GET['pay']) ? $_GET['pay'] : 0);
+        $op = intval(isset($_GET['op']) ? $_GET['op'] : 0);
+        $msisdn = isset($_GET['msisdn']) ? $_GET['msisdn'] : '';
+        
+        if (!empty($msisdn) && intval($msisdn) > 0 && $op > 0 && $clickid > 0) {
+            $model = new Model_Payment();
+            $model->payHistory($channelid, $clickid, $pay, $op, $msisdn);
+            
+            echo '1';
+        } else {
+            echo '0';
+        }
+    }
+
 }

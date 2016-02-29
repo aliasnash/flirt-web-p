@@ -5,6 +5,8 @@ class Controller_Profile extends Controller_Base {
     function index() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
         
+        $this->stat->saveStat($idu, "profile/index");
+        
         $model = new Model_Profile();
         $profiles = $model->getProfile($idu);
         
@@ -26,6 +28,8 @@ class Controller_Profile extends Controller_Base {
 
     function edit() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        $this->stat->saveStat($idu, "profile/edit");
         
         $model = new Model_Profile();
         $profiles = $model->getProfile($idu);
@@ -49,6 +53,8 @@ class Controller_Profile extends Controller_Base {
 
     function update() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        $this->stat->saveStat($idu, "profile/update");
         
         $nick = $_POST['nick'];
         $sex = $_POST['my_sex'];

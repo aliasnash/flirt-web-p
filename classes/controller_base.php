@@ -2,13 +2,16 @@
 
 abstract class Controller_Base {
 
-	protected $template;
+    protected $template;
 
-	protected $layouts = "main_layouts";
+    protected $layouts = "main_layouts";
 
-	function __construct() {
-		$this->template = new Template($this->layouts, get_class($this));
-	}
+    protected $stat;
 
-	abstract function index();
+    function __construct() {
+        $this->template = new Template($this->layouts, get_class($this));
+        $this->stat = new Model_Utilz();
+    }
+
+    abstract function index();
 }

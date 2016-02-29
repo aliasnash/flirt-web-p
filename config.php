@@ -3,7 +3,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('SITE_PATH', realpath(dirname(__FILE__) . DS));
 
 define('WEB_APP', dirname($_SERVER['PHP_SELF']));
-define('MIN_TIMEOUT_ONLINE', 10);
+define('MIN_TIMEOUT_ONLINE', 7);
 define('SEARCH_YEAR_DIFF', 5);
 define('REC_ON_PAGE', 6);
 

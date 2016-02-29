@@ -5,6 +5,8 @@ class Controller_Search extends Controller_Base {
     function index() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
         
+        $this->stat->saveStat($idu, "search/index");
+        
         unset($_SESSION['sex']);
         unset($_SESSION['bage']);
         unset($_SESSION['aage']);
@@ -22,6 +24,8 @@ class Controller_Search extends Controller_Base {
 
     function show() {
         $idu = isset($_SESSION['idu']) ? $_SESSION['idu'] : 0;
+        
+        $this->stat->saveStat($idu, "search/show");
         
         $model = new Model_Search();
         

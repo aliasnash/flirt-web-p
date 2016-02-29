@@ -34,8 +34,25 @@ class Model_Profile {
     public function updateLastVisit($id) {
         $this->userDao->updateVisitUsersById($id);
     }
-    
+
     public function uploadPhoto($iduser, $photopath) {
         $this->userDao->uploadPhoto($iduser, $photopath);
+    }
+
+    public function activateProfile($clickid, $msisdn, $idoperator) {
+        $this->userDao->activateProfile($clickid, $msisdn, $idoperator);
+    }
+
+    public function generateProfile($clickid) {
+        $data = $this->userDao->getUsersByClickId($clickid);
+        
+        if (count($data) == 0) {
+            $this->userDao->generateProfile($clickid);
+            $data = $this->userDao->getUsersByClickId($clickid);
+            if (count($data) > 0)
+                $id = $data[0]['id'];
+        } else
+            $id = $data[0]['id'];
+        return $id;
     }
 }
