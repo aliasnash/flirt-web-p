@@ -39,7 +39,7 @@
 </head>
 
 <body>
-	<div class="my-navbar">
+	<div class="my-navbar">	
 		<div class="container">
             <?php if ($logged)
                 include 'template_header_on.php';

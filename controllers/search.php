@@ -47,6 +47,7 @@ class Controller_Search extends Controller_Base {
             $p = $this->getPage($p, $pageCount);
             
             $userList = $model->getUsersList($idu, $sex, $bage, $aage, $idcity, $p);
+            
             $this->template->vars('p', $p);
             
             $this->template->vars('blockleft', $p <= 1);
@@ -70,7 +71,7 @@ class Controller_Search extends Controller_Base {
     }
 
     private function getPage($page, $pageCount) {
-        if ($page > $pageCount)
+        if ($pageCount > 0 && $page > $pageCount)
             return $pageCount;
         if ($page < 1)
             return 1;

@@ -22,7 +22,7 @@ class Controller_Photo extends Controller_Base {
         
         if ($idu > 0) {
             if (isset($_FILES['add-photo'])) {
-                var_dump($_FILES['add-photo']);
+//                 var_dump($_FILES['add-photo']);
                 
                 $tmpFile = $_FILES['add-photo']['tmp_name'];
                 $info = getimagesize($tmpFile);
@@ -33,7 +33,7 @@ class Controller_Photo extends Controller_Base {
                 
                 if ($width != null && $height != null) {
                     $md = md5(time());
-                    $path = trim(LOCAL_DIR_PHOTO, '/\\') . '/';
+                    $path = rtrim(LOCAL_DIR_PHOTO, '/\\') . '/';
                     
                     $dir = $path . $idu . '/';
                     if (!is_dir($dir)) {
