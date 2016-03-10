@@ -33,7 +33,7 @@ body {
 
 .imgtext {
 	background-color: black;
-	bottom: 28px;
+	bottom: 32px;
 	color: white;
 	margin: 0px 5px 0 5px;
 	opacity: 0.7;
@@ -137,8 +137,9 @@ body {
 .badge-notify {
 	background-color: #d43f3a;
 	position: relative;
-	top: -15px;
-	left: 40px;
+	top: -6px;
+	left: 35px;
+	font-size: 10px;
 }
 
 .media {
@@ -162,4 +163,24 @@ body {
 .add-photo-box .file-input {
 	display: table-cell;
 	max-width: 200px;
+}
+
+
+.profile-photo-buttons-holder {
+	bottom: 37px;
+	color: white;
+	margin: 0px 5px 0 5px;
+	opacity: 0.9;
+	padding: 0 0px 0 0px;
+	position: relative;
+}
+
+.move-left {
+	position: relative;
+	float: left;
+}
+
+.move-right {
+	position: relative;
+	float: right;
 }

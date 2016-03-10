@@ -2,7 +2,6 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('SITE_PATH', realpath(dirname(__FILE__) . DS));
 
-define('WEB_APP', dirname($_SERVER['PHP_SELF']));
 define('MIN_TIMEOUT_ONLINE', 7);
 define('SEARCH_YEAR_DIFF', 5);
 define('REC_ON_PAGE', 6);
@@ -20,6 +19,7 @@ define('REQ_TIMEOUT_SHOW_NEW_MSG', 1000 * 5);
 define('PHOTO_SIZE', 500);
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+	define('WEB_APP', dirname($_SERVER['PHP_SELF']));
     define('BRAND', 'TEST');
     define('PHOTO_URL_PREFIX', 'http://localhost:8090');
     define('LOCAL_DIR_PHOTO', 'd:/develop/Eclipse Workspace/Eclipse PHP Learning/flirt/images/');
@@ -30,6 +30,7 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
     define('DB_USER', 'postgres');
     define('DB_PASS', 'boroboro40gb');
 } else {
+	define('WEB_APP', 'http://mobi-flirt.ru');
     define('BRAND', 'Mobi-Flirt');
     define('PHOTO_URL_PREFIX', '/flirt/p');
     define('LOCAL_DIR_PHOTO', '/opt/photo/');

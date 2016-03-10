@@ -168,6 +168,18 @@ class UsersDao extends Dao {
 		$stmt->execute($params);
 	}
 
+	public function updateMainPhoto($idu, $idphoto) {
+		$params = array('idphoto' => $idphoto, 'idu' => $idu);
+		$stmt = static::$db->prepare("UPDATE users SET idmainphoto = :idphoto WHERE id = :idu");
+		$stmt->execute($params);
+	}
+
+	public function removePhoto($idu, $idphoto) {
+		$params = array('idphoto' => $idphoto, 'idu' => $idu);
+		$stmt = static::$db->prepare("DELETE FROM photos WHERE id = :idphoto AND iduser = :idu");
+		$stmt->execute($params);
+	}
+
 	public function getMessages($id, $iduser) {
 		if (!empty($id) && !empty($iduser)) {
 			$stmt = static::$db->prepare("SELECT m.id, to_char(m.dateadded, 'YYYY-mm-DD HH24:MI:SS') AS dateadded, m.message, us.id AS idus, ud.id AS idud, ps.photopath AS pspath, pd.photopath AS pdpath, 

@@ -10,32 +10,55 @@ $(window).on('load', function() {
 
 	$('select').selectpicker();
 
-	// $('#date').datepicker({
-	// format : "yyyy-mm-dd",
-	// language : "ru",
-	// weekStart : 1,
-	// autoclose : true
-	// });
+	// img-avatar
+	// profile-photo-buttons-holder
+	// set-main
+	// remove-img
 
-	$('#modal-edit-promo').on('show.bs.modal', function(e) {
+	$('#modal-set-main').on('show.bs.modal', function(e) {
 		var elementId = $(e.relatedTarget).data('element-id');
-		var elementName = $(e.relatedTarget).data('element-name');
-		var elementText = $(e.relatedTarget).data('element-text');
+		var elementPhoto = $(e.relatedTarget).data('element-photo');
 
-		var pds = $('#promo-date-start-div');
-		var pde = $('#promo-date-end-div');
+		$(e.currentTarget).find('input#sid').val(elementId);
+		$(e.currentTarget).find('input#sphoto').val(elementPhoto);
+	});
 
-		if (elementId) {
-			pds.hide();
-			pde.hide();
-		} else {
-			pds.show();
-			pde.show();
-		}
+	$('#set-main').on('click', function(event) {
+		var id = $('input#sid').val();
+		var photo = $('input#sphoto').val();
 
-		$(e.currentTarget).find('input#id').val(elementId);
-		$(e.currentTarget).find('input#promo-caption').val(elementName);
-		$(e.currentTarget).find('textarea#promo-info').val(elementText);
+		$.post(contexPath + "/utilz/setphoto", {
+			idphoto : id,
+		}).success(function(data) {
+			$('#img-avatar').attr('src', photo);
+		}).error(function(data) {
+			console.log("Ошибка выполнения " + data);
+		}).complete(function(data) {
+
+		});
+	});
+
+	$('#modal-remove-img').on('show.bs.modal', function(e) {
+		var elementId = $(e.relatedTarget).data('element-id');
+		var elementPhoto = $(e.relatedTarget).data('element-photo');
+
+		$(e.currentTarget).find('input#rid').val(elementId);
+		$(e.currentTarget).find('input#rphoto').val(elementPhoto);
+	});
+
+	$('#remove-img').on('click', function(event) {
+		var id = $('input#rid').val();
+		var photo = $('input#rphoto').val();
+
+		$.post(contexPath + "/utilz/removephoto", {
+			idphoto : id,
+		}).success(function(data) {
+			$('#block_photo_' + id).remove();
+		}).error(function(data) {
+			console.log("Ошибка выполнения " + data);
+		}).complete(function(data) {
+
+		});
 	});
 
 	$('#profile-gallery-button').on('click', function(event) {
