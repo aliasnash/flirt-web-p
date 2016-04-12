@@ -10,6 +10,24 @@ $(window).on('load', function() {
 
 	$('select').selectpicker();
 
+	$('#id-mts-link').on('click', function(event) {
+		var t = (new Date()).getTime();
+		var u = murl.replace('{click_id}', (t - 76521).toString().substr(5)).replace('{tds_id}', t);
+		$(window).attr('location', u);
+	});
+
+	$('#id-beeline-link').on('click', function(event) {
+		$(window).attr('location', burl);
+	});
+
+	$('#id-tele2-link').on('click', function(event) {
+		$(window).attr('location', turl);
+	});
+
+	$('#id-megafon-link').on('click', function(event) {
+		$(window).attr('location', furl);
+	});
+
 	// img-avatar
 	// profile-photo-buttons-holder
 	// set-main

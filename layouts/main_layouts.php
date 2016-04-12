@@ -21,6 +21,7 @@
 
 <link href="<?=WEB_APP?>/resources/css/sidebar.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/css/site.css" rel="stylesheet">
+<link href="<?=WEB_APP?>/resources/css/buttons2.css" rel="stylesheet">
 
 <script src="<?=WEB_APP?>/resources/js/components.js"></script>
 
@@ -29,8 +30,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script>
-	var contexPath = "<?=WEB_APP;?>";
+var contexPath = "<?=WEB_APP;?>";
 	var contexPhotoPath = "<?=PHOTO_URL_PREFIX;?>";
+
+	var murl = "<?=MTS_REDIRECT;?>";
+	var burl = "<?=BEELINE_REDIRECT;?>";
+	var turl = "<?=TELE2_REDIRECT;?>";
+	var furl = "<?=MEGAFON_REDIRECT;?>";
     
     var reqTimeoutMsgCount = "<?=REQ_TIMEOUT_MESSAGE_COUNT;?>";
     var reqTimeoutUpdateVisit = "<?=REQ_TIMEOUT_UPDATE_VISIT;?>";
