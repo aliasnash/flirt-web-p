@@ -1,0 +1,131 @@
+
+
+.btn-mts {
+	color: #ffffff;
+	background-color: #FF0000;
+	border-color: #FF0000;
+}
+
+.btn-mts:hover, .btn-mts:focus, .btn-mts:active, .btn-mts.active, .open .dropdown-toggle.btn-mts
+	{
+	color: #ffffff;
+	background-color: #C20000;
+	border-color: #FF0000;
+}
+
+.btn-mts:active, .btn-mts.active, .open .dropdown-toggle.btn-mts {
+	background-image: none;
+}
+
+.btn-mts.disabled, .btn-mts[disabled], fieldset[disabled] .btn-mts,
+	.btn-mts.disabled:hover, .btn-mts[disabled]:hover, fieldset[disabled] .btn-mts:hover,
+	.btn-mts.disabled:focus, .btn-mts[disabled]:focus, fieldset[disabled] .btn-mts:focus,
+	.btn-mts.disabled:active, .btn-mts[disabled]:active, fieldset[disabled] .btn-mts:active,
+	.btn-mts.disabled.active, .btn-mts[disabled].active, fieldset[disabled] .btn-mts.active
+	{
+	background-color: #FF0000;
+	border-color: #FF0000;
+}
+
+.btn-mts .badge {
+	color: #FF0000;
+	background-color: #ffffff;
+}
+
+.btn-tele2 {
+	color: #FFFFFF;
+	background-color: #000000;
+	border-color: #000000;
+}
+
+.btn-tele2:hover, .btn-tele2:focus, .btn-tele2:active, .btn-tele2.active,
+	.open .dropdown-toggle.btn-tele2 {
+	color: #FFFFFF;
+	background-color: #636363;
+	border-color: #000000;
+}
+
+.btn-tele2:active, .btn-tele2.active, .open .dropdown-toggle.btn-tele2 {
+	background-image: none;
+}
+
+.btn-tele2.disabled, .btn-tele2[disabled], fieldset[disabled] .btn-tele2,
+	.btn-tele2.disabled:hover, .btn-tele2[disabled]:hover, fieldset[disabled] .btn-tele2:hover,
+	.btn-tele2.disabled:focus, .btn-tele2[disabled]:focus, fieldset[disabled] .btn-tele2:focus,
+	.btn-tele2.disabled:active, .btn-tele2[disabled]:active, fieldset[disabled] .btn-tele2:active,
+	.btn-tele2.disabled.active, .btn-tele2[disabled].active, fieldset[disabled] .btn-tele2.active
+	{
+	background-color: #000000;
+	border-color: #000000;
+}
+
+.btn-tele2 .badge {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.btn-megafon {
+	color: #FFFFFF;
+	background-color: #009929;
+	border-color: #009929;
+}
+
+.btn-megafon:hover, .btn-megafon:focus, .btn-megafon:active,
+	.btn-megafon.active, .open .dropdown-toggle.btn-megafon {
+	color: #FFFFFF;
+	background-color: #00631A;
+	border-color: #009929;
+}
+
+.btn-megafon:active, .btn-megafon.active, .open .dropdown-toggle.btn-megafon
+	{
+	background-image: none;
+}
+
+.btn-megafon.disabled, .btn-megafon[disabled], fieldset[disabled] .btn-megafon,
+	.btn-megafon.disabled:hover, .btn-megafon[disabled]:hover, fieldset[disabled] .btn-megafon:hover,
+	.btn-megafon.disabled:focus, .btn-megafon[disabled]:focus, fieldset[disabled] .btn-megafon:focus,
+	.btn-megafon.disabled:active, .btn-megafon[disabled]:active, fieldset[disabled] .btn-megafon:active,
+	.btn-megafon.disabled.active, .btn-megafon[disabled].active, fieldset[disabled] .btn-megafon.active
+	{
+	background-color: #009929;
+	border-color: #009929;
+}
+
+.btn-megafon .badge {
+	color: #009929;
+	background-color: #FFFFFF;
+}
+
+.btn-beeline {
+	color: #000000;
+	background-color: #FFCC12;
+	border-color: #FFCC12;
+}
+
+.btn-beeline:hover, .btn-beeline:focus, .btn-beeline:active,
+	.btn-beeline.active, .open .dropdown-toggle.btn-beeline {
+	color: #000000;
+	background-color: #E6B70C;
+	border-color: #FFCC12;
+}
+
+.btn-beeline:active, .btn-beeline.active, .open .dropdown-toggle.btn-beeline
+	{
+	background-image: none;
+}
+
+.btn-beeline.disabled, .btn-beeline[disabled], fieldset[disabled] .btn-beeline,
+	.btn-beeline.disabled:hover, .btn-beeline[disabled]:hover, fieldset[disabled] .btn-beeline:hover,
+	.btn-beeline.disabled:focus, .btn-beeline[disabled]:focus, fieldset[disabled] .btn-beeline:focus,
+	.btn-beeline.disabled:active, .btn-beeline[disabled]:active, fieldset[disabled] .btn-beeline:active,
+	.btn-beeline.disabled.active, .btn-beeline[disabled].active, fieldset[disabled] .btn-beeline.active
+	{
+	background-color: #FFCC12;
+	border-color: #FFCC12;
+}
+
+.btn-beeline .badge {
+	color: #FFCC12;
+	background-color: #000000;
+}

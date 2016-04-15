@@ -21,6 +21,7 @@
 
 <link href="<?=WEB_APP?>/resources/css/sidebar.css" rel="stylesheet">
 <link href="<?=WEB_APP?>/resources/css/site.css" rel="stylesheet">
+<link href="<?=WEB_APP?>/resources/css/buttons2.css" rel="stylesheet">
 
 <script src="<?=WEB_APP?>/resources/js/components.js"></script>
 
