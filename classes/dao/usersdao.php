@@ -305,7 +305,6 @@ class UsersDao extends Dao {
 
 	public function saveOperator($msisdn, $request, $response) {
 		$params = array('msisdn' => $msisdn, 'request' => $request, 'response' => $response);
-		var_dump($params);
 		$stmt = static::$db->prepare("INSERT INTO operator_stat(msisdn, request, response) VALUES(:msisdn, :request, :response)");
 		$stmt->execute($params);
 	}
