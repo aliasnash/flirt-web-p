@@ -133,7 +133,7 @@ class UsersDao extends Dao {
 	}
 
 	public function getUsersByClickId($clickid) {
-		$stmt = static::$db->prepare("SELECT id, msisdn FROM users WHERE clickid = :clickid");
+		$stmt = static::$db->prepare("SELECT id, msisdn FROM users WHERE clickid = :clickid AND msisdn IS NULL");
 		$stmt->execute(array('clickid' => $clickid));
 		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $data;
