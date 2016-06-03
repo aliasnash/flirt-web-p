@@ -14,7 +14,7 @@ define('PHOTO_SIZE', 500);
 
 define('MTS_REDIRECT', 'http://api.mopromo.ru/stream/subs.php?content_id=b29b44f1-6966-4adf-aba7-b99de37c9690&back_url=http://mobi-flirt.ru/?SubscribeResult=true&click_id={click_id}&tds_id={tds_id}&channel_id=666');
 define('BEELINE_REDIRECT', '#');
-define('TELE2_REDIRECT', '#');
+define('TELE2_REDIRECT', 'http://tds.mopromo.ru/?ch_code=v68f17bf&click_id={click_id}');
 define('MEGAFON_REDIRECT', '#');
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {

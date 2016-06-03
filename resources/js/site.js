@@ -21,7 +21,9 @@ $(window).on('load', function() {
 	});
 
 	$('#id-tele2-link').on('click', function(event) {
-		$(window).attr('location', turl);
+		var t = (new Date()).getTime();
+		var u = turl.replace('{click_id}', (t - 76521).toString().substr(5));
+		$(window).attr('location', u);
 	});
 
 	$('#id-megafon-link').on('click', function(event) {
