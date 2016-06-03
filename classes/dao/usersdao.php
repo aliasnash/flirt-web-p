@@ -139,14 +139,24 @@ class UsersDao extends Dao {
 		return $data;
 	}
 
-	public function removeUserByMsisdn($msisdn) {
+	public function removeUserByClickId($click_id) {
 		$stmt = static::$db->prepare("INSERT INTO users_removed
                 (id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid)
                 (SELECT id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid 
+                FROM users WHERE clickid=:clickid)");
+		$stmt->execute(array('clickid' => $click_id));
+		$stmt = static::$db->prepare("DELETE FROM users WHERE clickid = :clickid");
+		$stmt->execute(array('clickid' => $click_id));
+	}
+	
+	public function removeUserByMsisdn($msisdn) {
+	    $stmt = static::$db->prepare("INSERT INTO users_removed
+                (id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid)
+                (SELECT id, msisdn, dateadded, nickname, sex, sex_search, birthday, idcity, description, isactive, lastvisit, likecount, idmainphoto, idoperator, clickid
                 FROM users WHERE msisdn=:msisdn)");
-		$stmt->execute(array('msisdn' => $msisdn));
-		$stmt = static::$db->prepare("DELETE FROM users WHERE msisdn = :msisdn");
-		$stmt->execute(array('msisdn' => $msisdn));
+	    $stmt->execute(array('msisdn' => $msisdn));
+	    $stmt = static::$db->prepare("DELETE FROM users WHERE msisdn = :msisdn");
+	    $stmt->execute(array('msisdn' => $msisdn));
 	}
 
 	public function updateProfile($profile) {

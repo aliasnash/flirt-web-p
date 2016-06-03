@@ -159,7 +159,7 @@ class Controller_Utilz extends Controller_Base {
             echo '0';
         }
     }
-    
+
     function func() {
         $status = isset($_GET['status']) ? $_GET['status'] : '';
         $response = '0';
@@ -171,6 +171,68 @@ class Controller_Utilz extends Controller_Base {
             $response = $this->charge();
         }
         return $response;
+    }
+
+    function api_b() {
+        $operators = array("beeline" => 1, "mts" => 2, "megafon" => 3, "tele2" => 4);
+        
+        // http://mobi-flirt.ru/utilz/api_b?action=new&request_id=123&msisdn=123456&operator=mts&click_params={'click_id':111}
+        
+        // action - text наименование действия - new/quit/pay
+        // request_id - int идентификатор уведомления
+        // project_id - int внутренний идентификатор проекта
+        // msisdn - int msisdn в формате 7xxx..
+        // time - timestamp время события
+        // operator - text наименование оператора - mts/beeline/megafon/tele2
+        // click_params - json get параметры
+        
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        $request_id = intval(isset($_GET['request_id']) ? $_GET['request_id'] : 0);
+        $project_id = intval(isset($_GET['project_id']) ? $_GET['project_id'] : 0);
+        $msisdn = isset($_GET['msisdn']) ? $_GET['msisdn'] : '';
+        $time = isset($_GET['time']) ? $_GET['time'] : '';
+        $operator = isset($_GET['operator']) ? $_GET['operator'] : '';
+        $click_params = isset($_GET['click_params']) ? $_GET['click_params'] : '';
+        
+        $click_id = 0;
+        $click_array;
+        
+        if (!empty($click_params)) {
+            $click_array = json_decode($click_params, true);
+            if (isset($click_array)) {
+                $click_id = intval(isset($click_array['click_id']) ? $click_array['click_id'] : 0);
+            }
+        }
+        
+        $op = isset($operators[$operator]) ? $operators[$operator] : 0;
+        
+        $response = 'fail';
+        
+        if ($action === 'new') {
+            if ($click_id > 0) {
+                $model = new Model_Profile();
+                $model->activateProfile($click_id, $msisdn, $op);
+            }
+            
+            $response = 'ok';
+        } else if ($action === 'quit') {
+            $model = new Model_Profile();
+            if (!empty($msisdn) && intval($msisdn) > 0) {
+                $model->removeProfile($msisdn);
+                $response = 'ok';
+            } else if ($click_id > 0) {
+                $model->removeProfileByClickId($click_id);
+                $response = 'ok';
+            }
+        } else if ($action === 'pay') {
+            $model = new Model_Payment();
+            $model->payHistory(0, $click_id, 0, $op, $msisdn);
+            
+            $response = 'ok';
+        }
+        
+        $this->stat->saveOperator($msisdn, $_SERVER["REQUEST_URI"], $response);
+        echo $response;
     }
 
 }

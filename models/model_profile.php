@@ -18,8 +18,12 @@ class Model_Profile {
 		return $data;
 	}
 
+	public function removeProfileByClickId($click_id) {
+		$this->userDao->removeUserByClickId($click_id);
+	}
+	
 	public function removeProfile($msisdn) {
-		$this->userDao->removeUserByMsisdn($msisdn);
+	    $this->userDao->removeUserByMsisdn($msisdn);
 	}
 
 	public function updateProfile($profile) {
